@@ -1,0 +1,32 @@
+require('dotenv').config();
+const { Sequelize, DataTypes } = require("sequelize");
+
+let db = {};
+
+const { PG_URI } = process.env;
+const sequelize = new Sequelize(PG_URI);
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+db.checkConnection = async function() {
+    sequelize.authenticate().then(() => {
+        console.log('Connection to database has been established successfully.');
+
+        //import db models
+        const userdb = require("../model/user")(sequelize, DataTypes);
+        db[userdb.name] = userdb;
+
+        sequelize.sync()
+        .then(() => {
+            console.log('Model synchronised with database.');
+        })
+        .catch(err => console.log(err));
+
+    })
+    .catch(err => {
+        console.error('Error connecting to database:', err);
+    });
+}
+
+module.exports = db;
