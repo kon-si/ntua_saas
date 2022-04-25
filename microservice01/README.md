@@ -14,7 +14,7 @@
     - Για την διαχείρηση των cookies.
 - [Sequelize](https://sequelize.org/docs/v6/) (npm install --save sequelize)
     - ORM: Ενδιάμεσο στρώμα διαχείρισης μοντέλων δεδομένων για πιο εύκολη πρόσβαση σε βάση και φορητότητα εφαρμογής. Για υποστήριξη PostgeSQL πρέπει να εγκαταστήσουμε το κατάλληλο συμπληρωματικό πακέτο (npm install --save pg pg-hstore).
-#### Dev Dependencies
+### Dev Dependencies
 - Nodemon (npm install nodemon -D)
     - Επανακινεί τον server αυτόματα κάθε φορά που κάνουμε αλλαγές στον κώδικα.
 
