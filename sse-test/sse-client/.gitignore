@@ -21,10 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/sse-test/sse-client/node_modules
-/sse-test/sse-client/package-lock.json
-/sse-test/sse-server/node_modules
-/sse-test/sse-server/package-lock.json
-/messaging-test/node_modules
-/messaging-test/package-lock.json
