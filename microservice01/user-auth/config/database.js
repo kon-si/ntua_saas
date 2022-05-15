@@ -14,8 +14,8 @@ db.checkConnection = async function() {
         console.log('Connection to database has been established successfully.');
 
         //import db models
-        const userdb = require("../model/user")(sequelize, DataTypes);
-        db[userdb.name] = userdb;
+        const users = require("../model/user")(sequelize, DataTypes);
+        db[users.name] = users;
 
         sequelize.sync()
         .then(() => {
