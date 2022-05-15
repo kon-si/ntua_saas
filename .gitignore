@@ -28,3 +28,6 @@ yarn-error.log*
 /sse-test/sse-server/package-lock.json
 /messaging-test/node_modules
 /messaging-test/package-lock.json
+
+/microservice01/authentication-front/node_modules
+/microservice01/user-auth/node_modules
