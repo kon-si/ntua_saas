@@ -7,7 +7,7 @@ const app = express();
 app.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
-    const token = req.cookies["x-access-token"] || req.headers["x-access-token"]; console.log(token);
+    const token = req.cookies["x-access-token"] || req.headers["x-access-token"];
     if (!token) {
         console.log("Verification: No access token.")
         return res.status(400).json({status:"failed"});
