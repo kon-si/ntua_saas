@@ -6,9 +6,12 @@ const db = require("./config/database");
 const cors = require('cors');
 
 // MIDDLEWARE FOR CROSS-ORIGIN REQUESTS
-app.use(cors({
-    credentials: true,
-}));
+app.use(cors(
+  {
+    origin: ["http://127.0.0.1", "http://localhost", "*"],
+    credentials: true,  // Allows credentials in http responses
+  }
+));
 
 const { API_PORT } = process.env;
 const port = process.env.PORT || API_PORT;
