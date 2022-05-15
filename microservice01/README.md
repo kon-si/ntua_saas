@@ -37,9 +37,10 @@
 
 ```JSON
 {
-    "email": "name@mail.com",
     "first_name": "fname",
     "last_name": "lname",
+    "username": "usrname",
+    "email": "name@mail.com",
     "password": "12345"
 }
 ```
@@ -49,6 +50,7 @@
 
 ```JSON
 {
+    "username": "usrname",
     "email": "name@mail.com",
     "password": "12345"
 }
