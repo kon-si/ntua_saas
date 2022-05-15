@@ -1,5 +1,6 @@
 const http = require("http");
-const app = require("./app");
+const express = require("express");
+const app = express();
 const server = http.createServer(app);
 const db = require('./config/database');
 
@@ -12,6 +13,11 @@ server.listen(port, () => {
 });
 
 db.checkConnection();
+
+app.use('/api/register', require('./register'));
+app.use('/api/login', require('./login'));
+app.use('/api/logout', require('./logout'));
+app.use('/api/welcome', require('./welcome'));
 
 process.on('SIGINT', function() {
     console.log('\nLogin Server Shut Down');
