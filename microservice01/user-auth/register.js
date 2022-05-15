@@ -10,7 +10,7 @@ app.use(express.json());
 // Register
 app.post("", async(req, res) => {
     try {
-        const { first_name, last_name, email, password, username } = req.body;
+        const { first_name, last_name, username, email, password } = req.body;
         
         // Validate if user exist in our database.
         const oldUser = await db.users.findOne({where: { email: email.toLowerCase() }});
