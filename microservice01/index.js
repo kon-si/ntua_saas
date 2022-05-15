@@ -11,7 +11,7 @@ const baseurl = "/authorisation/api"
 
 // server listening 
 server.listen(port, () => {
-  console.log("Authorisation API server running on: http://localhost:${port}/authorisation/api/welcome");
+  console.log(`Authorisation API server running on: http://localhost:${port}/authorisation/api`);
 });
 
 db.checkConnection();
