@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const db = require("./config/database");
 
 const app = express();
@@ -45,7 +45,7 @@ app.post("", async(req, res) => {
         await user.save();
 
         // Create JWT token cookie.
-        res.cookie("x-access-token", token, { httpOnly: true }).status(200).json(user);
+        res.cookie("x-access-token", token, { httpOnly: true }).status(200).json({status:"success"});
     } 
     catch (err) {
         console.log(err);
