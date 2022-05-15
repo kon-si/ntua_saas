@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const cookieParser = require('cookie-parser');
-const express = require('express');
+const cookieParser = require("cookie-parser");
+const express = require("express");
 
 const app = express();
 app.use(cookieParser());
