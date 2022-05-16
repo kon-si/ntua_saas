@@ -23,7 +23,7 @@
 - index.js
     - Δημιουργία server.
 - user.js
-    - Μοντέλο που αναπαριστά την δομή των δεδομένων στην βάση.
+    - Μοντέλο που αναπαριστά την δομή του πίνακα users στην βάση.
 - database.js
     - Σύνδεση στην βάση δεδομένων χρησιμοποιώντας το Sequelize και συχρονισμός του μοντέλου δεδομένων της εφαρμογής με την βάση.
 - app.js
@@ -31,8 +31,8 @@
 - auth.js 
     - Βοηθητική συνάρτηση για την πιστοποίηση του [JWT](https://jwt.io/) token.
 
-### Τερματικά (Endpoints)
-- Register (http://localhost:9103/api/register)
+### Λειτουργικά Τερματικά (Functional Endpoints)
+- Register (http://localhost:9101/authorisation/api/register) \
 Τερματικό για την δημιουργία νέου χρήστη και την έκδοση [JWT](https://jwt.io/) token. Στο σώμα του HTTP request πρέπει να περιλαμβάνονται τα στοιχεία του χρήστη στην παρακάτω μορφή:
 
 ```JSON
@@ -45,7 +45,7 @@
 }
 ```
 
-- Login (http://localhost:9103/api/login)
+- Login (http://localhost:9101/authorisation/api/login) \
 Τερματικό για την πιστοποίηση εγγεγραμμένου χρήστη και την έκδοση [JWT](https://jwt.io/) token. Στο σώμα του HTTP request πρέπει να περιλαμβάνονται τα στοιχεία του χρήστη στην παρακάτω μορφή:
 
 ```JSON
@@ -56,5 +56,12 @@
 }
 ```
 
-- Logout (http://localhost:9103/api/logout)
+- Logout (http://localhost:9101/authorisation/api/logout) \
 Τερματικό για την για την περίπτωση χρήσης με cookies το οποίο κάνει εκκαθάριση των cookies του browser.
+
+### Διαχειριστικά Τερματικά (Admin Endpoints)
+- Health Check (http://localhost:9101/authorisation/api/healthcheck) \
+Τερματικό για τον έλεγχο συνδεσιμότητας της βάσης.
+
+- Reset Users (http://localhost:9101/authorisation/api/resetusers) \
+Τερματικό για την εκκαθάριση του πίνακα users.
