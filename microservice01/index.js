@@ -27,6 +27,7 @@ db.checkConnection();
 
 // Admin endpoints.
 app.use(baseurl + "/healthcheck", require("./healthcheck"));
+app.use(baseurl + "/resetusers", require("./resetusers"));
 
 // Functional endpoints.
 app.use(baseurl + "/register", require("./register"));

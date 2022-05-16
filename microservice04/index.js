@@ -18,6 +18,8 @@ db.checkConnection();
 
 // Admin endpoints.
 app.use(baseurl + "/healthcheck", require("./healthcheck"));
+app.use(baseurl + "/resetcountries", require("./resetcountries"));
+app.use(baseurl + "/resetgeneration", require("./resetgeneration"));
 
 // Functional endpoints.
 app.use(baseurl + "/test", require("./test"));
