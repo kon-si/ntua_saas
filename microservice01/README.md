@@ -61,7 +61,7 @@
 
 ### Διαχειριστικά Τερματικά (Admin Endpoints)
 - Health Check (http://localhost:9101/authorisation/api/healthcheck)
-Τερματικό για τον έλεγχο συνδεσιμότητας της βάσης.
+\nΤερματικό για τον έλεγχο συνδεσιμότητας της βάσης.
 
 - Reset Users (http://localhost:9101/authorisation/api/resetusers)
-- Τερματικό για την εκκαθάριση του πίνακα χρηστών (users).
+\nΤερματικό για την εκκαθάριση του πίνακα χρηστών (users).
