@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="login.css">
+    <title>Login | Energy Live</title>
 </head>
 <body>
-    TIME TO LOG IN !
+    <div class="login-page">
+        <div class="form">
+            <form onsubmit="return false" class="login-form">
+                <input id="login-user-input" type="text" placeholder="username / email"/>
+                <input id="login-password-input" type="password" placeholder="password"/>
+                <button id="login-submit-btn">login</button>
+                <p class="message">Not registered? <a href="/register">Create an account</a></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

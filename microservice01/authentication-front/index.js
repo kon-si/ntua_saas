@@ -22,8 +22,3 @@ app.listen(80, function () {
 
 // ADD ASSET FILES TO THE WEB SERVER (IMAGES, CSS, JS)
 app.use(express.static(path.join(__dirname, "/assets")));
-
-
-function getWelcome() {
-
-}

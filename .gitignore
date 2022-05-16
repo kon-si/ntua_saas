@@ -30,4 +30,4 @@ yarn-error.log*
 /messaging-test/package-lock.json
 
 /microservice01/authentication-front/node_modules
-/microservice01/user-auth/node_modules
+/microservice01/node_modules
