@@ -12,7 +12,7 @@ app.use(express.json());
 app.post("", async(req, res) => {
     try {
         // Get user input.
-        const { username, email, password } = req.body; console.log(username, email);
+        const { username, email, password } = req.body;
         let token;
 
         // Validate if user exist in our database

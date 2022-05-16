@@ -5,16 +5,11 @@ const db = require("../config/database");
 const app = express();
 app.use(express.json());
 
-app.post("", async(req, res) => {
+app.post("/:country/:date_from/:date_to", async(req, res) => {
     try {
-        await db.actual_total.create({
-            resolution_code: "booga",
-            area_code: "ooga"
-        });
-        await db.countries.create({
-            country: "grec",
-            map_code: "ooga"
-        });
+        // Get user input.
+        const { country, date_from, date_to } = req.params;
+        res.status(200).json({status:"success"});
     } 
     catch (err) {
         console.log(err);
