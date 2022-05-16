@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const db = require("./config/database");
+const db = require("../config/database");
 const { Op } = require("sequelize");
 
 const app = express();

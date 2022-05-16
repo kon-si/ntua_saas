@@ -17,15 +17,15 @@ server.listen(port, () => {
 db.checkConnection();
 
 // Admin endpoints.
-app.use(baseurl + "/healthcheck", require("./healthcheck"));
-app.use(baseurl + "/resetcountries", require("./resetcountries"));
-app.use(baseurl + "/resetflows", require("./resetflows"));
+app.use(baseurl + "/healthcheck", require("./admin/healthcheck"));
+app.use(baseurl + "/resetcountries", require("./admin/resetcountries"));
+app.use(baseurl + "/resetflows", require("./admin/resetflows"));
 
 // Functional endpoints.
-app.use(baseurl + "/test", require("./test"));
+app.use(baseurl + "/test", require("./functional/test"));
 
 process.on('SIGINT', function() {
-    console.log("\Flows API server shuting down.");
+    console.log("\nFlows API server shuting down.");
     db.sequelize.close();
     server.close();
     process.exit();

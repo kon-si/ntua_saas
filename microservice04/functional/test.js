@@ -1,13 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const db = require("./config/database");
+const db = require("../config/database");
 
 const app = express();
 app.use(express.json());
 
 app.post("", async(req, res) => {
     try {
-        await db.actual_total.create({
+        await db.aggregated_generation.create({
             resolution_code: "booga",
             area_code: "ooga"
         });

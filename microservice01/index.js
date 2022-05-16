@@ -26,14 +26,14 @@ server.listen(port, () => {
 db.checkConnection();
 
 // Admin endpoints.
-app.use(baseurl + "/healthcheck", require("./healthcheck"));
-app.use(baseurl + "/resetusers", require("./resetusers"));
+app.use(baseurl + "/healthcheck", require("./admin/healthcheck"));
+app.use(baseurl + "/resetusers", require("./admin/resetusers"));
 
 // Functional endpoints.
-app.use(baseurl + "/register", require("./register"));
-app.use(baseurl + "/login", require("./login"));
-app.use(baseurl + "/logout", require("./logout"));
-app.use(baseurl + "/welcome", require("./welcome"));
+app.use(baseurl + "/register", require("./functional/register"));
+app.use(baseurl + "/login", require("./functional/login"));
+app.use(baseurl + "/logout", require("./functional/logout"));
+app.use(baseurl + "/welcome", require("./functional/welcome"));
 
 process.on('SIGINT', function() {
     console.log("\nAuthorisation API server shuting down.");

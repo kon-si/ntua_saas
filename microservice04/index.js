@@ -17,15 +17,15 @@ server.listen(port, () => {
 db.checkConnection();
 
 // Admin endpoints.
-app.use(baseurl + "/healthcheck", require("./healthcheck"));
-app.use(baseurl + "/resetcountries", require("./resetcountries"));
-app.use(baseurl + "/resetgeneration", require("./resetgeneration"));
+app.use(baseurl + "/healthcheck", require("./admin/healthcheck"));
+app.use(baseurl + "/resetcountries", require("./admin/resetcountries"));
+app.use(baseurl + "/resetgeneration", require("./admin/resetgeneration"));
 
 // Functional endpoints.
-app.use(baseurl + "/test", require("./test"));
+app.use(baseurl + "/test", require("./functional/test"));
 
 process.on('SIGINT', function() {
-    console.log("\Generation API server shuting down.");
+    console.log("\nGeneration API server shuting down.");
     db.sequelize.close();
     server.close();
     process.exit();

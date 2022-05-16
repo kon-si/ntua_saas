@@ -1,18 +1,18 @@
 const express = require("express");
-const db = require("./config/database");
+const db = require("../config/database");
 
 const app = express();
 app.use(express.json());
 
 app.post("", async(req, res) => {
     try {
-        await db.aggregated_generation.truncate();
-        console.log("Table aggregated_generation truncated.");
+        await db.sequelize.authenticate();
+        console.log("Connection to flows database healthy.");
         res.status(200).json({status:"success"});
 
     } 
     catch (err) {
-        console.log("Table aggregated_generation truncate failed:", err);
+        console.log("Error connecting to flows database:", err);
         res.status(400).json({status:"failed"});
     }
 });

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const auth = require("./middleware/auth");
+const auth = require("../middleware/auth");
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 

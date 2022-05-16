@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("./config/database");
+const db = require("../config/database");
 
 const app = express();
 app.use(express.json());
@@ -7,12 +7,12 @@ app.use(express.json());
 app.post("", async(req, res) => {
     try {
         await db.sequelize.authenticate();
-        console.log("Connection to generation database healthy.");
+        console.log("Connection to users database healthy.");
         res.status(200).json({status:"success"});
 
     } 
     catch (err) {
-        console.log("Error connecting to generation database:", err);
+        console.log("Error connecting to users database:", err);
         res.status(400).json({status:"failed"});
     }
 });
