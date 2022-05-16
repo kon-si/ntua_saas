@@ -16,6 +16,10 @@ server.listen(port, () => {
 
 db.checkConnection();
 
+// Admin endpoints.
+app.use(baseurl + "/healthcheck", require("./healthcheck"));
+
+// Functional endpoints.
 app.use(baseurl + "/test", require("./test"));
 
 process.on('SIGINT', function() {

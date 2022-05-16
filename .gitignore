@@ -31,3 +31,6 @@ yarn-error.log*
 
 /microservice01/authentication-front/node_modules
 /microservice01/node_modules
+/microservice02/node_modules
+/microservice03/node_modules
+/microservice04/node_modules

@@ -5,11 +5,11 @@ const server = http.createServer(app);
 const db = require("./config/database");
 const cors = require('cors');
 
-// MIDDLEWARE FOR CROSS-ORIGIN REQUESTS
+// Middleware for cross-origin requests.
 app.use(cors(
   {
     origin: ["http://127.0.0.1", "http://localhost", "*"],
-    credentials: true,  // Allows credentials in http responses
+    credentials: true,  // Allows credentials(cookies) in http responses
   }
 ));
 
@@ -18,13 +18,17 @@ const port = process.env.PORT || API_PORT;
 
 const baseurl = "/authorisation/api"
 
-// server listening 
+// Server listening. 
 server.listen(port, () => {
   console.log(`Authorisation API server running on: http://localhost:${port}/authorisation/api`);
 });
 
 db.checkConnection();
 
+// Admin endpoints.
+app.use(baseurl + "/healthcheck", require("./healthcheck"));
+
+// Functional endpoints.
 app.use(baseurl + "/register", require("./register"));
 app.use(baseurl + "/login", require("./login"));
 app.use(baseurl + "/logout", require("./logout"));
