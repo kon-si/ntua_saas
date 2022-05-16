@@ -2,7 +2,7 @@
 
 body {
     background: lightgrey; /* fallback for old browsers */
-    background: rgb(236, 226, 34);
+    /* background: rgb(236, 226, 34); */
     /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -64,9 +64,7 @@ body {
   color: #7e7e7e;
   text-decoration: none;
 }
-.form .register-form {
-  display: none;
-}
+
 .container {
   position: relative;
   z-index: 1;
