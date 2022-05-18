@@ -22,7 +22,7 @@ app.use(baseurl + "/resetcountries", require("./admin/resetcountries"));
 app.use(baseurl + "/resettotal", require("./admin/resettotal"));
 
 // Functional endpoints.
-app.use(baseurl + "/test", require("./functional/test"));
+app.use(baseurl + "/data", require("./functional/data"));
 
 process.on('SIGINT', function() {
     console.log("\nTotal API server shuting down.");

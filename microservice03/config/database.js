@@ -16,7 +16,7 @@ db.checkConnection = async function() {
         //import db models
         const countries = require("../model/countries")(sequelize, DataTypes);
         db[countries.name] = countries;
-        const actual_total = require("../model/total")(sequelize, DataTypes);
+        const actual_total = require("../model/actual_total")(sequelize, DataTypes);
         db[actual_total.name] = actual_total;
         
         sequelize.sync()
