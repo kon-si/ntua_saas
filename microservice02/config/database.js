@@ -16,7 +16,7 @@ db.checkConnection = async function() {
         //import db models
         const countries = require("../model/countries")(sequelize, DataTypes);
         db[countries.name] = countries;
-        const physical_flows = require("../model/flows")(sequelize, DataTypes);
+        const physical_flows = require("../model/physical_flows")(sequelize, DataTypes);
         db[physical_flows.name] = physical_flows;
         
         sequelize.sync()

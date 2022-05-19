@@ -16,7 +16,7 @@ db.checkConnection = async function() {
         //import db models
         const countries = require("../model/countries")(sequelize, DataTypes);
         db[countries.name] = countries;
-        const aggregated_generation = require("../model/generation")(sequelize, DataTypes);
+        const aggregated_generation = require("../model/aggregated_generation")(sequelize, DataTypes);
         db[aggregated_generation.name] = aggregated_generation;
         
         sequelize.sync()

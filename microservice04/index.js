@@ -22,7 +22,7 @@ app.use(baseurl + "/resetcountries", require("./admin/resetcountries"));
 app.use(baseurl + "/resetgeneration", require("./admin/resetgeneration"));
 
 // Functional endpoints.
-app.use(baseurl + "/test", require("./functional/test"));
+app.use(baseurl + "/data", require("./functional/data"));
 
 process.on('SIGINT', function() {
     console.log("\nGeneration API server shuting down.");
