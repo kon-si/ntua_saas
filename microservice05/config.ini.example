@@ -1,0 +1,10 @@
+[postgresql]
+host = 
+user = 
+port = 
+password = 
+database = 
+
+[kafka]
+topic = 
+servers = 
