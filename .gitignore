@@ -34,3 +34,5 @@ yarn-error.log*
 /microservice02/node_modules
 /microservice03/node_modules
 /microservice04/node_modules
+
+/microservice05/config.ini
