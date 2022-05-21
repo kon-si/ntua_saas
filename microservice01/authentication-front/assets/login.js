@@ -8,6 +8,15 @@ $(function() {
 
         makeLoginCall(username, email, password);
     })
+
+    window.gapi.load('client:auth2', () => {
+        window.gapi.client.init({
+            clientId: '672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com',
+            scope: "email",
+            plugin_name: "dashboard"
+        })
+    });
+
 });
 
 // LOGIN REQUEST
@@ -34,4 +43,17 @@ function makeLoginCall(username, email, password) {
             // window.location.replace("http://127.0.0.1:80/login");
         }
     });
+}
+
+function onSignIn(googleUser) {
+    // console.log('IT WORKS');
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log(JSON.stringify(id_token));
+
+    // var profile = googleUser.getBasicProfile();
+    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    // console.log('Name: ' + profile.getName());
+    // console.log('Image URL: ' + profile.getImageUrl());
+    // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    // window.location.replace("http://127.0.0.1:80/?user="+profile.getName());
 }
