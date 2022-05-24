@@ -15,7 +15,7 @@ app.post("/:out_map_code/:in_map_code/:date_from/:date_to", async(req, res) => {
         const today = new Date();
         const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        const date_time = date+' '+time;
+        const date_time = date + ' ' + time;
 
         const response = {
             "RequestTimestamp": date_time,
