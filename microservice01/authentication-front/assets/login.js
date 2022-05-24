@@ -1,3 +1,7 @@
+var api_domain = '127.0.0.1:9101';
+// var web_domain = '127.0.0.1:80';
+var web_domain = 'localhost:80';
+
 $(function() {
     $('#login-submit-btn').on('click', function () {
         let user = $('#login-user-input').val().toString();
@@ -8,21 +12,12 @@ $(function() {
 
         makeLoginCall(username, email, password);
     })
-
-    window.gapi.load('client:auth2', () => {
-        window.gapi.client.init({
-            clientId: '672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com',
-            scope: "email",
-            plugin_name: "dashboard"
-        })
-    });
-
 });
 
-// LOGIN REQUEST
+// LOGIN REQUEST (with website credentials)
 function makeLoginCall(username, email, password) {
     $.ajax({
-        url: 'http://127.0.0.1:9101/authorisation/api/login',
+        url: 'http://'+api_domain+'/authorisation/api/login',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -36,24 +31,60 @@ function makeLoginCall(username, email, password) {
         }),
         success: function() {
             console.log('You are logged in !');
-            window.location.replace("http://127.0.0.1:80/?user="+username);
+            window.location.replace('http://'+web_domain+'/?user='+username);
         },
         error: function() { // WRONG CREDENTIALS
             console.log('Error in login !');
-            // window.location.replace("http://127.0.0.1:80/login");
+            window.location.replace('http://'+web_domain+'/login');
         }
     });
 }
 
-function onSignIn(googleUser) {
-    // console.log('IT WORKS');
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log(JSON.stringify(id_token));
+// LOGIN REQUEST (with google credentials)
+var userJWT;
 
-    // var profile = googleUser.getBasicProfile();
-    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    // console.log('Name: ' + profile.getName());
-    // console.log('Image URL: ' + profile.getImageUrl());
-    // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    // window.location.replace("http://127.0.0.1:80/?user="+profile.getName());
+function handleCredentialResponse(data) {
+    console.log(data);
+    userJWT = data['credential'];
+    deleteCookie('google-user-jwt');
+    setCookie('google-user-jwt', userJWT, 1);
+    fetchUserDetails(userJWT);
 }
+
+function fetchUserDetails(cred) {
+    const Http = new XMLHttpRequest();
+    const url = 'https://oauth2.googleapis.com/tokeninfo?id_token='+cred;
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState === XMLHttpRequest.DONE) {
+            console.log(Http.responseText);
+            const response = JSON.parse(Http.responseText);
+            // window.alert('Hello ' + response['given_name'] + " !");
+            window.location.replace('http://'+web_domain+'/?user='+response['name']);
+        }
+    }
+}
+
+// async function checkUser() {
+//     let result;
+//     const url = 'https://oauth2.googleapis.com/tokeninfo?id_token='+userJWT;
+//     result = await fetch(url).then(
+//         response => response.json()).then(json => {
+//             console.log(json['error']);
+//             if(json['error'] == null) {
+//                 // window.alert("user not logged in");
+//                 return true;
+//             } else {
+//                 return false;
+//             }
+//         })
+// }
+
+// function logoutGoogle() {
+//     console.log("Logging out ... ");
+//     google.accounts.id.revoke('nikolas.bellos@gmail.com', done => {
+//         console.log('consent revoked');
+//     });
+// }

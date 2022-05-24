@@ -1,18 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body {
-    background: lightgrey; /* fallback for old browsers */
-    /* background: rgb(236, 226, 34); */
-    /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;      
-  }
+  background: #F7BF4F;  
+  /* background: rgb(236, 226, 34); */
+  /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
   margin: auto;
+}
+
+#login-logo {
+  display: flex;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 30px auto;
 }
 
 .form {
@@ -22,6 +29,7 @@ body {
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
+  border-radius: 5px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -40,7 +48,7 @@ body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #e1c33d;
+  background: #7d7d7d;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -51,7 +59,7 @@ body {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #c6a015;
+  background: #000000;
   transform: translate(1px, 1px);
   transition: 0.1s ease-in-out;
 }

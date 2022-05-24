@@ -8,17 +8,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- GOOGLE SIGN IN -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <meta name="google-signin-client_id" content="672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com"> -->
     <!-- STATIC ASSETS -->
     <script src="login.js"></script>
+    <script src="cookies.js"></script>
     <link rel="stylesheet" href="login.css">
     <title>Login | Energy Live</title>
 </head>
 <body>
+    <img id="login-logo" src="/images/Energy Live-logos_transparent.png">
     <div class="login-page">
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <!-- GOOGLE SIGN IN -->
+        <div id="g_id_onload" data-auto_prompt="false"
+            data-client_id="672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" 
+            data-type="standard"
+            data-text="continue_with"
+            data-theme="filled_black"
+            data-width="360">
+        </div>
+        
         <div id="login-separation">or</div>
+
         <div class="form">
             <form onsubmit="return false" class="login-form">
                 <input id="login-user-input" type="text" placeholder="username / email"/>

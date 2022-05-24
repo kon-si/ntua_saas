@@ -1,33 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body {
-    background: lightgrey; /* fallback for old browsers */
-    /* background: rgb(236, 226, 34); */
-    /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;      
-  }
+  background: #F7BF4F;  
+  /* background: lightgrey; //fallback for old browsers */
+  /* background: rgb(236, 226, 34); */
+  /* background: linear-gradient(90deg, rgba(141,194,111,1) 0%, rgba(118,184,82,1) 50%); */
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;     
+  width: 100vw; 
+}
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
   margin: auto;
+}
+
+#login-logo {
+  display: flex;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 30px auto;
 }
 
 .login-page > div {
     width: 360px !important;
 }
 
-.g-signin2 {
-    margin: 10px auto;
-}
-
-.g-signin2 > div {
-    width: 100% !important;
-    padding: 0 10px;
-    border-radius: 5px;
-    height: auto;
+.g_id_signin {
+  margin: 10px auto;
 }
 
 #login-separation {
@@ -39,7 +41,7 @@ body {
 #login-separation::before, #login-separation::after {
     content: "";
     flex: 1 1;
-    border-bottom: 1px solid rgb(169, 169, 169);
+    border-bottom: 1px solid #fdfdfd73;
     margin: auto 5px;
 }
 
@@ -69,7 +71,7 @@ body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #e1c33d;
+  background: #7d7d7d;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -80,7 +82,7 @@ body {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #c6a015;
+  background: #000000;
   transform: translate(1px, 1px);
   transition: 0.1s ease-in-out;
 }
