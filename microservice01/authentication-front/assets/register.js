@@ -1,3 +1,7 @@
+var api_domain = '127.0.0.1:9101';
+// var web_domain = '127.0.0.1:80';
+var web_domain = 'localhost:80';
+
 $(function() {
     $('#register-submit-btn').on('click', function () {
         let username = $('#register-username-input').val().toString();
@@ -11,7 +15,7 @@ $(function() {
 // REGISTER REQUEST
 function makeRegisterCall(username, email, password) {
     $.ajax({
-        url: 'http://127.0.0.1:9101/authorisation/api/register',
+        url: 'http://'+api_domain+'/authorisation/api/register',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -26,11 +30,9 @@ function makeRegisterCall(username, email, password) {
             "password" : password
         }),
         success: function() {
-            // console.log('You are registerd !');
-            window.location.replace("http://127.0.0.1:80/");
+            window.location.replace('http://'+web_domain+'/');
         },
         error: function() { // WRONG CREDENTIALS
-            // window.location.replace("http://127.0.0.1:80/register");
             console.log('Oops, something went wrong !');
         }
     });
