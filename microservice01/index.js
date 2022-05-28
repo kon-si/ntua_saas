@@ -35,6 +35,7 @@ app.use(baseurl + "/login", require("./functional/login"));
 app.use(baseurl + "/logout", require("./functional/logout"));
 app.use(baseurl + "/welcome", require("./functional/welcome"));
 app.use(baseurl + "/renew", require("./functional/renew"));
+app.use(baseurl + "/userinfo", require("./functional/userinfo"));
 
 process.on('SIGINT', function() {
     console.log("\nAuthorisation API server shuting down.");
