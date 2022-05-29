@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 const app = express();
 app.use(express.json());
 
-app.post("/:out_map_code/:in_map_code/:date_from/:date_to", async(req, res) => {
+app.get("/:out_map_code/:in_map_code/:date_from/:date_to", async(req, res) => {
     try {
         // Get user input.
         const { out_map_code, in_map_code, date_from, date_to } = req.params;

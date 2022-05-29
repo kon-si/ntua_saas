@@ -12,7 +12,7 @@ db_params = configParser["postgresql"]
 kafka_params = configParser["kafka"]
 
 # INITIALIZE A KAFKA PRODUCER
-producer = KafkaProducer(bootstrap_servers=kafka_params["servers"])
+#producer = KafkaProducer(bootstrap_servers=kafka_params["servers"])
 
 # PATH OF PROJECT
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -85,8 +85,8 @@ for file_name in sorted(list_dir_files(os.path.join(dir_path, "Data"))):
     import_new_file(file_name)
 
     # 3) Send message to kafka for each DB update
-    print("KAFKA msg sent !")
-    msg = "API call url"
-    future = producer.send(kafka_params["topic"], msg.encode('utf-8'))
+    #print("KAFKA msg sent !")
+    #msg = "API call url"
+    #future = producer.send(kafka_params["topic"], msg.encode('utf-8'))
 
 conn.close()

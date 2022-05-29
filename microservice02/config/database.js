@@ -4,7 +4,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 let db = {};
 
 const { PG_URI } = process.env;
-const sequelize = new Sequelize(PG_URI);
+const sequelize = new Sequelize(PG_URI, { dialect: 'postgres', dialectOptions: { useUTC: false }, timezone: '+02:00' });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
