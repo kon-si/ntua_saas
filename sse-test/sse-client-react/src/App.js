@@ -10,6 +10,7 @@ function App() {
         // PARSE THE DATA
         const parsedData = JSON.parse(event.data);
 
+        setFacts([]);
         setFacts((facts) => facts.concat(parsedData));
       };
       

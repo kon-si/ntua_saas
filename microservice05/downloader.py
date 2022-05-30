@@ -2,6 +2,7 @@ import os
 import psycopg2
 from kafka import KafkaProducer
 import configparser
+import json
 
 # PARAMETERS
 config_path = './config.ini'
@@ -12,7 +13,7 @@ db_params = configParser["postgresql"]
 kafka_params = configParser["kafka"]
 
 # INITIALIZE A KAFKA PRODUCER
-#producer = KafkaProducer(bootstrap_servers=kafka_params["servers"])
+producer = KafkaProducer(bootstrap_servers=kafka_params["servers"])
 
 # PATH OF PROJECT
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -74,6 +75,7 @@ def import_new_file(file_name):
     cursor.execute(sql)
     conn.commit()
 
+    return (start_date, end_date)
 
 # BUSINESS LOGIC
 # 1) Connect to DB
@@ -82,11 +84,13 @@ conn, cursor = db_connect()
 for file_name in sorted(list_dir_files(os.path.join(dir_path, "Data"))):
     input("Press Enter to Import " + file_name)
 
-    import_new_file(file_name)
+    (startDate, endDate) = import_new_file(file_name)
 
     # 3) Send message to kafka for each DB update
-    #print("KAFKA msg sent !")
-    #msg = "API call url"
-    #future = producer.send(kafka_params["topic"], msg.encode('utf-8'))
+    print("KAFKA msg sent !")
+    # msg = "API call url"
+    msg = '{ "StartDate" : "' +startDate+ '", "EndDate" : "' +endDate+ '"}'
+    # msg = json.dumps(msg_string)
+    future = producer.send(kafka_params["topic"], msg.encode('utf-8'))
 
 conn.close()
