@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post("", async(req, res) => {    
     try {
-        // Get user input.
+        const path = '/home/konsi/Desktop/ntua_saas/saas2022-20/microservice06/functional/';
         const { file_name } = req.body;
         const date = file_name.substr(0,7).replace("_", "-");
         const month = date.substr(5, 6);
@@ -21,22 +21,15 @@ app.post("", async(req, res) => {
         else
             date_to = date + "-31"
        
-        const data = await db.actual_total.findAll({where: { date_time: {[Op.between]: [date_from, date_to]} }});
-
-        await db.sequelize.query("DELETE FROM actual_total WHERE date_time BETWEEN :from AND :to", 
-        {
-            replacements: { from: date_from, to: date_to },
-            type: QueryTypes.DELETE
-        });
+        await db.actual_total.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
         
-        path = '/home/konsi/Desktop/ntua_saas/saas2022-20/microservice06/functional/2022_01_22_00_ActualTotalLoad6.1.A.csv';
         await db.sequelize.query("COPY actual_total(date_time,resolution_code,area_code,area_type_code,area_name,map_code,total_load_value,update_time) FROM :file DELIMITER '\t' CSV HEADER;", 
         {
-            replacements: { file: path },
+            replacements: { file: path + file_name },
             type: QueryTypes.COPY
         });
 
-        res.status(200).json(data);
+        res.status(200).json({status:"success"});
     } 
     catch (err) {
         console.log(err);
