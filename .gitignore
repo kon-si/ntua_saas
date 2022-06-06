@@ -29,6 +29,12 @@ yarn-error.log*
 /messaging-test/node_modules
 /messaging-test/package-lock.json
 
+frontend/node_modules/
+frontend/package-lock.json
+
+frontend/bundles/node_modules
+frontend/bundles/package-lock.json 
+
 /microservice01/authentication-front/node_modules
 /microservice01/node_modules
 /microservice02/node_modules
