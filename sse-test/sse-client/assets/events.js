@@ -8,7 +8,7 @@ var statsTable = document.getElementById("table-body");
 var atCountryCode = 'BE';
 var atStartDate = '20220101';
 var atEndDate = '20220227';
-var source = new EventSource(`http://localhost:9103/total/api/data/${atCountryCode}/${atStartDate}/${atEndDate}`);
+var source = new EventSource(`http://localhost:9103/total/api/stream/${atCountryCode}/${atStartDate}/${atEndDate}`);
 
 source.onmessage = function(event) {
     window.alert('new data !!');
@@ -58,7 +58,7 @@ $(()=>{
 function atApiCall() {
     $.ajax({
         url: `http://localhost:9103/total/api/data/${atCountryCode}/${atStartDate}/${atEndDate}`,
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
         cache: false,
         async: false,

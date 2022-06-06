@@ -47,6 +47,7 @@ function eventsHandler(request, response, next) {
     };
 
     clients.push(newClient);
+    console.log(newClient.response);
 
     request.on('close', () => {
         console.log(`${clientId} Connection closed`);

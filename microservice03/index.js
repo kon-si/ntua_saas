@@ -27,6 +27,7 @@ app.use(baseurl + "/resettotal", require("./admin/resettotal"));
 
 // Functional endpoints.
 app.use(baseurl + "/data", require("./functional/data"));
+app.use(baseurl + "/stream", require("./functional/stream"));
 
 process.on('SIGINT', function() {
     console.log("\nTotal API server shuting down.");

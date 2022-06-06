@@ -11,7 +11,7 @@ produce('Test message #2').catch((err) => {
 
 produce('test message #3').catch((err) => {
     console.error('error in producer: ', err);
-})
+}) 
 
 consume().catch((err) => {
     console.error('error in consumer: ', err);
