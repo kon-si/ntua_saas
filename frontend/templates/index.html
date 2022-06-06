@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    WELCOME BACK <span id="username-label"></span>!
+    <br>
+    <!-- <div id="g_id_onload" data-auto_prompt="false"
+        data-client_id="672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+    </div> -->
+    <!-- <div class="g_id_signin" 
+        data-type="standard"
+        data-text="continue_with"
+        data-theme="filled_black"
+        data-width="360">
+    </div> -->
+    <div id="user-photo">
+        
+    </div>
+    <br>
+    <button id="logout-btn">LOG OUT</button>
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="main.js"></script>
+{% endblock %}
