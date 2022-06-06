@@ -38,3 +38,5 @@ yarn-error.log*
 /microservice06/node_modules
 
 /microservice05/config.ini
+
+/docker/
