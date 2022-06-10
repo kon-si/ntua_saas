@@ -15,8 +15,17 @@
   </head>
   <body>
 
+    <nav id="top-navbar">
+      {% include "nav.html" %}
+    </nav>
+
+    
+
     <main id="main">
-        {% block content %}{% endblock %}
+      <aside id="side-navbar">
+        {% include "sidebar.html" %}
+      </aside>
+      {% block content %}{% endblock %}
     </main>
  
     <!-- <script type="text/javascript" src="main.js"></script> -->
@@ -24,6 +33,7 @@
     <script type="text/javascript" src="/js/auth/cookies.js"></script>
     
     <!-- EXTRA JAVASCRIPT FILES -->
+    <script type="text/javascript" src="main.js"></script>
     {% block scripts %}{% endblock %}
 
   </body> 
