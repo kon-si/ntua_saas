@@ -38,12 +38,12 @@
                 width: 3em;
                 border-radius: $border-radius-sm;
             }
-            .fa-angle-down {
-                position: relative;
-                top: 2px;
-                font-size: 1.3rem;
-                transition: transform 0.3s ease;
-            }
+            // .fa-angle-down {
+            //     position: relative;
+            //     top: 2px;
+            //     font-size: 1.3rem;
+            //     transition: transform 0.3s ease;
+            // }
           }
           .dropdown-menu {
             display: none;
@@ -63,6 +63,15 @@
                 text-align: center;
                 cursor: pointer;
                 transition: background 0.3s ease;
+            }
+            .user-box {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                img {
+                    width: 3.3em;
+                    border-radius: $border-radius-sm;
+                }
             }
             .extend-box {
                 display: flex;

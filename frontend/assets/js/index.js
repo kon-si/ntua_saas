@@ -4,7 +4,7 @@ import "./nav.js"
 // GET USER NAME
 var url = new URL(document.URL);
 const params = url.searchParams;
-
+console.log(params);
 $('.username-label').text(params.get('user'));
 
 $(function() {
@@ -27,11 +27,18 @@ $(function() {
                 pictureObj.alt = 'user-picture';
                 pictureDiv.appendChild(pictureObj);
 
+                //second picture url
                 let pictureDivPopUp = document.getElementById('user-photo-popup');
                 let pictureObjPopUp = document.createElement('img');
                 pictureObjPopUp.src = pictureURL;
                 pictureDivPopUp.appendChild(pictureObjPopUp);
 
+                //email info 
+                let userEmail = response['email'];
+                console.log(userEmail);
+                // let emailDiv = document.getElementById('user-email');
+                // let emailObj = document.createElement('span');
+                // emailDiv.parentElement(emailObj);
             }
         }
     }
