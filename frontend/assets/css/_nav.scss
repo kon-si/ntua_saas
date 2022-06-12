@@ -1,11 +1,170 @@
+// Navigation Bar on Header 
 #top-navbar {
-    background-color: black;
+    background-color: $white;
     height: 10vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 $border-radius-sm $border-radius-sm;
+    justify-content: space-between;
+}
+.navbar-brand {
+    height: $logo-height-lg;
+}
+.right-infobox {
+    display: flex;
+    align-items: center;
+    margin-right: 1em;
+    .subscription-time {
+        margin: 0;
+        font-size: 0.9rem;
+        color: $gray-2;
+        font-weight: 700;
+    }
+    .dropdown-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1em;
+        .dropdown {
+            background: #f8f8f8;
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+            #user-photo img {
+                width: 3em;
+                border-radius: $border-radius-sm;
+            }
+            .fa-angle-down {
+                position: relative;
+                top: 2px;
+                font-size: 1.3rem;
+                transition: transform 0.3s ease;
+            }
+          }
+          .dropdown-menu {
+            display: none;
+            flex-direction: column;
+            border-radius: $border-radius-sm;
+            margin: 15em 15em 0 0;
+            box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.3);
+            background: #fafafa;
+            transform-origin: top left;
+            width: max-content;
+            padding: 0.8em;
+            span {
+                padding: 10px;
+                flex-grow: 1;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: center;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+            .extend-box {
+                display: flex;
+                align-items: center;
+                margin-top: 1.5em;
+                .extend-btn {
+                    background-color: $gray;
+                    color: $white;
+                    border-radius: 5px;
+                    padding: 0.5em 0.9em;
+                    margin-right: 3em;
+                    &:hover {
+                        background-color: $gray-2;
+                    }
+                }
+            }
+            .signout-btn {
+                border: none;
+                background: none;
+                text-align: start;
+                color: $gray; 
+                &:hover {
+                    color: $black;
+                }
+            }
+            
+            .rotate-dropdown-arrow {
+                transform: rotate(-180deg);
+            }
+          }
+        //   .dropdown-menu span:hover {
+        //     background: #eee;
+        //   }
+          #openDropdown:checked + .dropdown-menu {
+            display: flex;
+            animation: openDropDown 0.4s ease 0s 1 forwards;
+          }
+      }
 }
 
+// Side Navigation Bar 
 #side-navbar { 
-    background-color: aqua;
+    background-color: $primary;
     height: 100%;
-    width: 12em;
+    width: 13em;
+    nav {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+        .nav-items {
+            margin: 4em 0;
+            padding: 0 2.1em 0em 0em;
+            li {
+                list-style: none;
+                color: $black; 
+                background-color: $white;
+                list-style: none;
+                margin: 1em 0em 0em 0em;
+                padding: 0.7em 0.5em;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                border-radius: 0 5px 5px 0;
+                a {
+                    color: $black;
+                }
+                &.active {
+                    background-color: $bg-color-2;
+                    a {
+                        color: $white;
+                    }
+                }
+                &:hover {
+                    a {
+                        color: $white;
+                    }
+                    background-color: $bg-color-2;
+                }
+            }   
+        }
+        .nav-options {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 1em 0.5em;
+            li {
+                .nav-icon {
+                    width: 2.2em; 
+                    margin: 0 1em 0 0;
+                }
+                a {
+                    color: $black;
+                    &:hover {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+@keyframes openDropDown {
+    from { transform: rotateX(50deg); }
+    to { transform: rotateX(0deg); }
 }
