@@ -1,10 +1,11 @@
 import "../css/main.scss"
+import "./nav.js"
 
 // GET USER NAME
 var url = new URL(document.URL);
 const params = url.searchParams;
-
-$('#username-label').text(params.get('user'));
+console.log(params);
+$('.username-label').text(params.get('user'));
 
 $(function() {
     if (checkCookie('google-user-jwt')) {
@@ -18,12 +19,26 @@ $(function() {
         Http.onreadystatechange = (e) => {
             if (Http.readyState === XMLHttpRequest.DONE) {
                 const response = JSON.parse(Http.responseText);
+                console.log(response);
                 let pictureURL = response['picture'];
                 let pictureDiv = document.getElementById('user-photo');
                 let pictureObj = document.createElement('img');
                 pictureObj.src = pictureURL;
                 pictureObj.alt = 'user-picture';
                 pictureDiv.appendChild(pictureObj);
+
+                //second picture url
+                let pictureDivPopUp = document.getElementById('user-photo-popup');
+                let pictureObjPopUp = document.createElement('img');
+                pictureObjPopUp.src = pictureURL;
+                pictureDivPopUp.appendChild(pictureObjPopUp);
+
+                //email info 
+                let userEmail = response['email'];
+                console.log(userEmail);
+                // let emailDiv = document.getElementById('user-email');
+                // let emailObj = document.createElement('span');
+                // emailDiv.parentElement(emailObj);
             }
         }
     }
