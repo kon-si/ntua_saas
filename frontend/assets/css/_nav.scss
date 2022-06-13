@@ -9,7 +9,12 @@
     justify-content: space-between;
 }
 .navbar-brand {
-    height: $logo-height-lg;
+    width: 10.5em;
+    display: flex;
+    justify-content: center;
+    .nav-logo {
+        height: $logo-height-lg;
+    }
 }
 .right-infobox {
     display: flex;
@@ -21,12 +26,15 @@
         color: $gray-2;
         font-weight: 700;
     }
+    .notification-icon {
+        width: 1.9em;
+        margin: 0 1.5em;
+    }
     .dropdown-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left: 1em;
         .dropdown {
             background: #f8f8f8;
             display: flex;
@@ -49,7 +57,7 @@
             display: none;
             flex-direction: column;
             border-radius: $border-radius-sm;
-            margin: 15em 15em 0 0;
+            margin: 17em 15em 0 0;
             box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.3);
             background: #fafafa;
             transform-origin: top left;
@@ -71,6 +79,18 @@
                 img {
                     width: 3.3em;
                     border-radius: $border-radius-sm;
+                }
+                .user-info {
+                    display: flex;
+                    flex-direction: column;
+                    .username-label {
+                        text-align: inherit;
+                    }
+                    span {
+                        padding: 0 1em;
+                        font-size: 0.9em;
+                        cursor: text;
+                    }
                 }
             }
             .extend-box {
@@ -156,7 +176,7 @@
         .nav-options {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             margin: 1em 0.5em;
             li {
                 .nav-icon {

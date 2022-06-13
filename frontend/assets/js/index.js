@@ -35,10 +35,11 @@ $(function() {
 
                 //email info 
                 let userEmail = response['email'];
-                console.log(userEmail);
-                // let emailDiv = document.getElementById('user-email');
-                // let emailObj = document.createElement('span');
-                // emailDiv.parentElement(emailObj);
+                $('#user-email').html(userEmail);
+                // var emailSpan = document.createElement('span')
+                // emailSpan.innerHTML = userEmail;
+                // emailSpan.appendChild(emailSpan);
+
             }
         }
     }
