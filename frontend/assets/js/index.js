@@ -6,49 +6,64 @@ var api_domain = '127.0.0.1:9101';
 // var web_domain = '127.0.0.1:80';
 var web_domain = 'localhost:80';
 
-// GET USER NAME
-// var url = new URL(document.URL);
-// const params = url.searchParams;
-// console.log(params);
-// $('.username-label').text(params.get('user'));
-
-console.log('HI');
-
 $(function() {
     if (checkCookie('x-access-token')) {
-        let userToken = getCookie('x-access-token');
+        // let userToken = getCookie('x-access-token');
 
-        const Http = new XMLHttpRequest();
-        const url = 'http://'+api_domain+'/authorisation/api/userinfo/'+userToken;
-        Http.open("GET", url);
-        Http.send();
+        $.ajax({
+            url: 'http://'+api_domain+'/authorisation/api/userinfo/',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true   // Sends http requests with credentials (ex. cookies)
+            },
+            success: function(data) {
+                console.log('User Data retrieved !');
+                // const response = JSON.parse(data);
+                const response = data;
 
-        Http.onreadystatechange = (e) => {
-            if (Http.readyState === XMLHttpRequest.DONE) {
-                const response = JSON.parse(Http.responseText);
-                console.log(response);
+                setUserElements(response['username'], response['username'], response['email'], '/images/icons/icons-user-default.png');
 
-                let pictureURL = '/images/icons/icons-user-default.png';
-                let pictureDiv = document.getElementById('user-photo');
-                let pictureObj = document.createElement('img');
-                pictureObj.src = pictureURL;
-                pictureObj.alt = 'user-picture';
-                pictureDiv.appendChild(pictureObj);
-
-                //second picture url
-                let pictureDivPopUp = document.getElementById('user-photo-popup');
-                let pictureObjPopUp = document.createElement('img');
-                pictureObjPopUp.src = pictureURL;
-                pictureDivPopUp.appendChild(pictureObjPopUp);
-
-                //username info
-                $('.username-label').html(response['username']);
-
-                //email info 
-                let userEmail = response['email'];
-                $('#user-email').html(userEmail);
+            },
+            error: function() { // WRONG CREDENTIALS
+                console.log('Error with User Data :( !');
             }
-        }
+        });
+
+        // DEPRICATED
+
+        // const Http = new XMLHttpRequest();
+        // const url = 'http://'+api_domain+'/authorisation/api/userinfo/';
+        // Http.open("GET", url);
+        // Http.send();
+
+        // Http.onreadystatechange = (e) => {
+        //     if (Http.readyState === XMLHttpRequest.DONE) {
+        //         const response = JSON.parse(Http.responseText);
+        //         console.log(response);
+
+        //         let pictureURL = '/images/icons/icons-user-default.png';
+        //         let pictureDiv = document.getElementById('user-photo');
+        //         let pictureObj = document.createElement('img');
+        //         pictureObj.src = pictureURL;
+        //         pictureObj.alt = 'user-picture';
+        //         pictureDiv.appendChild(pictureObj);
+
+        //         //second picture url
+        //         let pictureDivPopUp = document.getElementById('user-photo-popup');
+        //         let pictureObjPopUp = document.createElement('img');
+        //         pictureObjPopUp.src = pictureURL;
+        //         pictureDivPopUp.appendChild(pictureObjPopUp);
+
+        //         //username info
+        //         $('.username-label').html(response['username']);
+
+        //         //email info 
+        //         let userEmail = response['email'];
+        //         $('#user-email').html(userEmail);
+        //     }
+        // }
 
     }
     else if (checkCookie('google-user-jwt')) {
@@ -63,28 +78,35 @@ $(function() {
             if (Http.readyState === XMLHttpRequest.DONE) {
                 const response = JSON.parse(Http.responseText);
                 console.log(response);
-                let pictureURL = response['picture'];
-                let pictureDiv = document.getElementById('user-photo');
-                let pictureObj = document.createElement('img');
-                pictureObj.src = pictureURL;
-                pictureObj.alt = 'user-picture';
-                pictureDiv.appendChild(pictureObj);
 
-                //second picture url
-                let pictureDivPopUp = document.getElementById('user-photo-popup');
-                let pictureObjPopUp = document.createElement('img');
-                pictureObjPopUp.src = pictureURL;
-                pictureDivPopUp.appendChild(pictureObjPopUp);
-
-                //username info
-                $('#username-label-popup').html(response['name']);
-                $('#username-label-home').html(response['given_name']);
-
-                //email info 
-                let userEmail = response['email'];
-                $('#user-email').html(userEmail);
+                setUserElements(response['name'], response['given_name'], response['email'], response['picture']);
 
             }
         }
+    } else {
+        setUserElements('', '', '', '/images/icons/icons-user-default.png');
     }
 });
+
+function setUserElements (name, firstName, email, picture) {
+    let pictureURL = picture;
+    let pictureDiv = document.getElementById('user-photo');
+    let pictureObj = document.createElement('img');
+    pictureObj.src = pictureURL;
+    pictureObj.alt = 'user-picture';
+    pictureDiv.appendChild(pictureObj);
+
+    //second picture url
+    let pictureDivPopUp = document.getElementById('user-photo-popup');
+    let pictureObjPopUp = document.createElement('img');
+    pictureObjPopUp.src = pictureURL;
+    pictureDivPopUp.appendChild(pictureObjPopUp);
+
+    //username info
+    $('#username-label-popup').html(name);
+    $('#username-label-home').html(firstName);
+
+    //email info 
+    let userEmail = email;
+    $('#user-email').html(userEmail);
+}

@@ -1,15 +1,16 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const db = require("../config/database");
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 // Login
-app.get("/:token", async(req, res) => {
+app.get("/", async(req, res) => {
     try {
         // Get user input.
         const token = req.cookies["x-access-token"];
-        console.log(token);
 
         // Validate if user exist in our database
         const user = await db.users.findOne({where: { auth_token: token }});
