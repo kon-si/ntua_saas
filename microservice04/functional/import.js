@@ -11,7 +11,7 @@ const consume = async () => {
     db.checkConnection();
     await consumer.connect();
     await consumer.subscribe({ 
-        topic: 'flows',
+        topic: 'generation_importer',
         fromBeginning: true
     })
     await consumer.run({
