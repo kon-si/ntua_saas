@@ -46,5 +46,3 @@ frontend/bundles/package-lock.json
 /microservice05/config.ini
 
 # /microservice01/.env
-
-/docker/

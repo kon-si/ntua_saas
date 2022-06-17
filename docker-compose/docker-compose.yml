@@ -1,0 +1,87 @@
+version: '3.7'
+
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.1
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:7.0.1
+    container_name: broker
+    stdin_open: true
+    tty: true
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  energyLive_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - energyLive_db:/var/lib/postgresql/data
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_database.sql
+
+  authentication_api:
+    image: microservice01
+    depends_on:
+      - energyLive_db
+    ports:
+      - 9101:9101
+    environment:
+      PG_URI: postgresql://postgres:postgres@energyLive_db:5432/energyLive_users
+    volumes:
+      - './:/src'
+
+  flows_api:
+    image: microservice02
+    depends_on:
+      - energyLive_db
+    ports:
+      - 9102:9102
+    environment:
+      PG_URI: postgresql://postgres:postgres@energyLive_db:5432/energyLive_flows
+    volumes:
+      - './:/src'
+
+  total_api:
+    image: microservice03
+    depends_on:
+      - broker
+      - energyLive_db
+    ports:
+      - 9103:9103
+    environment:
+      PG_URI: postgresql://postgres:postgres@energyLive_db:5432/energyLive_total
+    volumes:
+      - './:/src'
+
+  generation_api:
+    image: microservice04
+    depends_on:
+      - energyLive_db
+    ports:
+      - 9104:9104
+    environment:
+      PG_URI: postgresql://postgres:postgres@energyLive_db:5432/energyLive_generation
+    volumes:
+      - './:/src'
+
+volumes:
+  energyLive_db:
+    driver: local
