@@ -33,7 +33,7 @@ app.post("", async(req, res) => {
             await user.save();
         
              // Create JWT token cookie.
-            res.cookie("x-access-token", token, { httpOnly: true, sameSite: "none", secure: true }).status(200).json({status:"success"});
+            res.cookie("x-access-token", token, { sameSite: "none", secure: true }).status(200).json({status:"success"});
         }
         else {
             console.log("Login: Invalid credentials.");

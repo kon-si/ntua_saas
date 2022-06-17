@@ -5,10 +5,11 @@ const app = express();
 app.use(express.json());
 
 // Login
-app.get("", async(req, res) => {
+app.get("/:token", async(req, res) => {
     try {
         // Get user input.
-        const { token } = req.body;
+        const { token } = req.params;
+        console.log(token);
 
         // Validate if user exist in our database
         const user = await db.users.findOne({where: { auth_token: token }});

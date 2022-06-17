@@ -1,4 +1,5 @@
 var api_domain = '127.0.0.1:9101';
+// var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
 // var web_domain = '127.0.0.1:80';
 var web_domain = 'localhost:80';
 

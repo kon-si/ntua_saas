@@ -1,4 +1,5 @@
 var api_domain = '127.0.0.1:9101';
+// var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
 // var web_domain = '127.0.0.1:80';
 var web_domain = 'localhost:80';
 
@@ -31,7 +32,8 @@ function makeLoginCall(username, email, password) {
         }),
         success: function() {
             console.log('You are logged in !');
-            window.location.replace('http://'+web_domain+'/?user='+username);
+            deleteCookie('google-user-jwt');
+            window.location.replace('http://'+web_domain+'/');
         },
         error: function() { // WRONG CREDENTIALS
             console.log('Error in login !');
@@ -46,6 +48,7 @@ var userJWT;
 function handleCredentialResponse(data = () => {}) {
     console.log(data);
     userJWT = data['credential'];
+    deleteCookie('x-access-token');
     deleteCookie('google-user-jwt');
     setCookie('google-user-jwt', userJWT, 1);
     fetchUserDetails(userJWT);
@@ -61,7 +64,7 @@ function fetchUserDetails(cred) {
         if (Http.readyState === XMLHttpRequest.DONE) {
             console.log(Http.responseText);
             const response = JSON.parse(Http.responseText);
-            window.location.replace('http://'+web_domain+'/?user='+response['name']);
+            window.location.replace('http://'+web_domain+'/');
         }
     }
 }
