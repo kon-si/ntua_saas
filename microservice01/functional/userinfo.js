@@ -8,7 +8,7 @@ app.use(express.json());
 app.get("/:token", async(req, res) => {
     try {
         // Get user input.
-        const { token } = req.params;
+        const token = req.cookies["x-access-token"];
         console.log(token);
 
         // Validate if user exist in our database
