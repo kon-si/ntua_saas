@@ -23,7 +23,11 @@ $(function() {
                 // const response = JSON.parse(data);
                 const response = data;
 
-                setUserElements(response['username'], response['username'], response['email'], '/images/icons/icons-user-default.png');
+                let remDays = (response['expiration_date'] === null ? 0 : getRemDays(response['expiration_date']));
+
+                console.log('Expires on : ' + remDays);
+
+                setUserElements(response['username'], response['username'], response['email'], '/images/icons/icons-user-default.png', remDays);
 
             },
             error: function() { // WRONG CREDENTIALS
@@ -65,8 +69,7 @@ $(function() {
         //     }
         // }
 
-    }
-    else if (checkCookie('google-user-jwt')) {
+    } else if (checkCookie('google-user-jwt')) {
         let googleToken = getCookie('google-user-jwt');
 
         const Http = new XMLHttpRequest();
@@ -88,7 +91,19 @@ $(function() {
     }
 });
 
-function setUserElements (name, firstName, email, picture) {
+function getRemDays(expirDate) {
+    const today = new Date();
+    const expiration = new Date(expirDate);
+    
+    let t1 = today.getTime();
+    let t2 = expiration.getTime();
+
+    let remDays = Math.floor((t2-t1)/(24*3600*1000));
+
+    return remDays;
+}
+
+function setUserElements (name, firstName, email, picture, daysRem) {
     let pictureURL = picture;
     let pictureDiv = document.getElementById('user-photo');
     let pictureObj = document.createElement('img');
@@ -109,4 +124,8 @@ function setUserElements (name, firstName, email, picture) {
     //email info 
     let userEmail = email;
     $('#user-email').html(userEmail);
+
+    // subscription days
+    $('.subscription-time').html(daysRem.toString() + ' days left');
 }
+

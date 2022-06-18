@@ -7,7 +7,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Login
-app.get("/", async(req, res) => {
+app.get("", async(req, res) => {
     try {
         // Get user input.
         const token = req.cookies["x-access-token"];
