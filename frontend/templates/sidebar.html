@@ -1,22 +1,36 @@
 <nav>
     <ul class="nav-items">
-        <li>
-            <a href="/">Newsfeed</a>
-        </li>
-        <li>
-            <a href="/total">Actual Total</a>
-        </li>
-        <li>
-            <a href="/genaration">Generation Per Type</a>
-        </li>
-        <li>
-            <a href="/flows">Physical Flows</a>
-        </li>
+        <a href="/">
+            <li id="home-li" href="/">
+                <i class="material-icons nav-icon">home</i>&nbsp;&nbsp;
+                Newsfeed
+            </li>
+        </a>
+        <a href="/total">
+            <li id="total-li">
+                <i class="material-icons nav-icon">battery_charging_full</i>&nbsp;&nbsp;
+                Actual Total
+            </li>
+        </a>
+        <a href="/generation">
+            <li id="generation-li">
+                <i class="material-icons nav-icon">bolt</i>&nbsp;&nbsp;
+                Generation Per Type
+            </li>
+        </a>
+        <a href="/flows">
+            <li id="flows-li">
+                <i class="material-icons nav-icon">sync_alt</i>&nbsp;&nbsp;
+                Physical Flows
+            </li>
+        </a>
     </ul>
     <ul class="nav-options">
         <li>
-            <img class="nav-icon" src="images/logout.png" alt="Log out icon"/>
-            <a href ="#">Log out</a>
+            <button class="signout-btn">
+                <img class="nav-icon" src="images/logout.png" alt="Log out icon"/>
+                Sign out
+            </button>
         </li>
     </ul>
 </nav>

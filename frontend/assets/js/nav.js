@@ -1,7 +1,7 @@
 import $ from '../../bundles/node_modules/jquery';
 
 // NAVBAR ACTIVE LINK
-$('.nav-items li a').each(function() {
+$('.nav-items a').each(function() {
     var isActive = this.pathname === location.pathname;
-    $(this).parent().toggleClass('active', isActive);
+    $(this).children(0).toggleClass('active', isActive);
 });

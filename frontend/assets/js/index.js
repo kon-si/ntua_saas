@@ -80,12 +80,12 @@ $(function() {
                 const response = JSON.parse(Http.responseText);
                 console.log(response);
 
-                setUserElements(response['name'], response['given_name'], response['email'], response['picture']);
+                setUserElements(response['name'], response['given_name'], response['email'], response['picture'], null);
 
             }
         }
     } else {
-        setUserElements('', '', '', '/images/icons/icons-user-default.png');
+        setUserElements('', '', '', '/images/icons/icons-user-default.png', null);
     }
 });
 

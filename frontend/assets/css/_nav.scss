@@ -9,7 +9,7 @@
     justify-content: space-between;
 }
 .navbar-brand {
-    width: 10.5em;
+    width: 11.2em;
     display: flex;
     justify-content: center;
     .nav-logo {
@@ -46,12 +46,6 @@
                 width: 3em;
                 border-radius: $border-radius-sm;
             }
-            // .fa-angle-down {
-            //     position: relative;
-            //     top: 2px;
-            //     font-size: 1.3rem;
-            //     transition: transform 0.3s ease;
-            // }
           }
           .dropdown-menu {
             display: none;
@@ -85,6 +79,7 @@
                     flex-direction: column;
                     .username-label {
                         text-align: inherit;
+                        font-weight: bold;
                     }
                     span {
                         padding: 0 1em;
@@ -123,9 +118,6 @@
                 transform: rotate(-180deg);
             }
           }
-        //   .dropdown-menu span:hover {
-        //     background: #eee;
-        //   }
           #openDropdown:checked + .dropdown-menu {
             display: flex;
             animation: openDropDown 0.4s ease 0s 1 forwards;
@@ -137,7 +129,7 @@
 #side-navbar { 
     background-color: $primary;
     height: 100%;
-    width: 13em;
+    width: 14em;
     nav {
         display: flex;
         flex-direction: column;
@@ -145,32 +137,34 @@
         justify-content: space-between;
         .nav-items {
             margin: 4em 0;
-            padding: 0 2.1em 0em 0em;
+            padding: 0 0.5em;
             li {
                 list-style: none;
                 color: $black; 
-                background-color: $white;
                 list-style: none;
                 margin: 1em 0em 0em 0em;
-                padding: 0.7em 0.5em;
+                padding: 0.7em;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 text-align: center;
-                border-radius: 0 5px 5px 0;
-                a {
-                    color: $black;
-                }
+                border-radius: $border-radius-sm;
+                // a {
+                //     color: $black;
+                // }
                 &.active {
                     background-color: $bg-color-2;
-                    a {
-                        color: $white;
-                    }
+                    color: $white;
+                    // a {
+                    //     color: $white;
+                    // }
                 }
                 &:hover {
-                    a {
-                        color: $white;
-                    }
+                    cursor: pointer;
                     background-color: $bg-color-2;
+                    color: $white;
+                    // a {
+                    //     color: $white;
+                    // }
                 }
             }   
         }
@@ -188,6 +182,16 @@
                     color: $black;
                     &:hover {
                         color: $white;
+                    }
+                }
+                .signout-btn {
+                    border: none;
+                    background: none;
+                    text-align: start;
+                    color: $black; 
+                    font-weight: 700;
+                    &:hover {
+                        color: $black;
                     }
                 }
             }

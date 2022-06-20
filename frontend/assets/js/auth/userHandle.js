@@ -31,7 +31,7 @@ $(function() {
 }); 
 
 // LOGOUT 
-$('#logout-btn').on('click', function () {
+$('.signout-btn').on('click', function () {
     if (checkCookie('google-user-jwt')) {
         deleteCookie('google-user-jwt');
         window.location.replace('http://'+web_domain+'/login');
