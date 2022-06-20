@@ -22,10 +22,12 @@ app.post("", async(req, res) => {
         const user = await db.users.findOne({where: { auth_token: token }});
 
         // Get todays date
-        const today = new Date(user.expiration_date);
-        today.setDate(today.getDate() + days);
-        const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        const today = new Date();
+        const expDate = new Date(user.expiration_date);
+        const selectedDate = new Date(Math.max(today, expDate));    // if expiration day is before today consider today as expiration day
+        selectedDate.setDate(selectedDate.getDate() + days);
+        const date = selectedDate.getFullYear()+'-'+(selectedDate.getMonth()+1)+'-'+selectedDate.getDate();
+        const time = selectedDate.getHours() + ":" + selectedDate.getMinutes() + ":" + selectedDate.getSeconds();
         const date_time = date + ' ' + time;
     
         if (typeof user !== "undefined") {

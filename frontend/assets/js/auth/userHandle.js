@@ -92,7 +92,8 @@ function updateRemDays() {
                 let remDays = (response['expiration_date'] === null ? 0 : getRemDays(response['expiration_date']));
                 console.log('Refresh timee');
                 // subscription days
-                $('.subscription-time').html(remDays.toString() + ' days left');
+                let daysRemActual = (remDays <= 0 ? 0 : remDays);
+                $('.subscription-time').html(daysRemActual.toString() + ' days left');
             },
             error: function() { // WRONG CREDENTIALS
                 console.log('Error with User Data :( !');

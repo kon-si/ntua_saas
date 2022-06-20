@@ -25,8 +25,6 @@ $(function() {
 
                 let remDays = (response['expiration_date'] === null ? 0 : getRemDays(response['expiration_date']));
 
-                console.log('Expires on : ' + remDays);
-
                 setUserElements(response['username'], response['username'], response['email'], '/images/icons/icons-user-default.png', remDays);
 
             },
@@ -126,6 +124,7 @@ function setUserElements (name, firstName, email, picture, daysRem) {
     $('#user-email').html(userEmail);
 
     // subscription days
-    $('.subscription-time').html(daysRem.toString() + ' days left');
+    let daysRemActual = (daysRem <= 0 ? 0 : daysRem);
+    $('.subscription-time').html(daysRemActual.toString() + ' days left');
 }
 
