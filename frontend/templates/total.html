@@ -1,4 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="header-container">
+    <form class="inputs-container">
+      <select id="countries-list">
+        <option value="">Select a Country</option>
+      </select>
+      <div class="input-div">
+        <label class="input-desc">Date From :</label>
+        <input id="at-start-date" class="input-field" type="date">
+      </div>
+      <div class="input-div">
+          <label class="input-desc">Date to :</label>
+          <input id="at-end-date" class="input-field" type="date">
+      </div>
+      <button id="at-submit-btn" class="btnI" type="button">Submit</button>
+    </form>
+  </div>
+  <figure class="highcharts-figure">
+      <div id="container"></div>
+  </figure>
+  
+  {% endblock %}
+  {% block scripts %}
+  <script type="text/javascript" src="total.js"></script>
+  {% endblock %}
 {% endblock %}
