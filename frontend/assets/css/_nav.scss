@@ -129,7 +129,7 @@
 #side-navbar { 
     background-color: $primary;
     height: 100%;
-    width: 14em;
+    min-width: 14em;
     nav {
         display: flex;
         flex-direction: column;
