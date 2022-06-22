@@ -45,9 +45,13 @@ $('.signout-btn').on('click', function () {
                 withCredentials: true  
             },
             success: function () {
+                deleteCookie('x-access-token');
+                deleteCookie('google-user-jwt');
                 window.location.replace('http://'+web_domain+'/login');
             },
             error: function(){  // NO TOKEN
+                deleteCookie('x-access-token');
+                deleteCookie('google-user-jwt');
                 window.location.replace('http://'+web_domain+'/login');
             }
         });

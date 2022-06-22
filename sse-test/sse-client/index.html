@@ -5,12 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     
     <title>Document</title>
 </head>
 <body>
     WELCOME BACK !
-    <table id="stats-table">
+
+    <select id="countries-list">
+      <option value="">Select a country</option>
+    </select>
+    <p id="test-flag"></p>
+
+    <!-- <table id="stats-table">
         <thead>
           <tr>
             <th>Fact</th>
@@ -20,7 +32,16 @@
         <tbody id="table-body">
           
         </tbody>
-      </table>
+      </table> -->
+
+      <figure class="highcharts-figure">
+          <div id="container"></div>
+          <p class="highcharts-description">
+              Highcharts has extensive support for time series, and will adapt
+              intelligently to the input data. Click and drag in the chart to zoom in
+              and inspect the data.
+          </p>
+      </figure>
 
       <script src="events.js"></script>
 </body>

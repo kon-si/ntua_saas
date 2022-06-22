@@ -9,7 +9,6 @@ var web_domain = 'localhost:80';
 $(function() {
     if (checkCookie('x-access-token')) {
         // let userToken = getCookie('x-access-token');
-
         $.ajax({
             url: 'http://'+api_domain+'/authorisation/api/userinfo/',
             type: 'GET',
@@ -32,41 +31,6 @@ $(function() {
                 console.log('Error with User Data :( !');
             }
         });
-
-        // DEPRICATED
-
-        // const Http = new XMLHttpRequest();
-        // const url = 'http://'+api_domain+'/authorisation/api/userinfo/';
-        // Http.open("GET", url);
-        // Http.send();
-
-        // Http.onreadystatechange = (e) => {
-        //     if (Http.readyState === XMLHttpRequest.DONE) {
-        //         const response = JSON.parse(Http.responseText);
-        //         console.log(response);
-
-        //         let pictureURL = '/images/icons/icons-user-default.png';
-        //         let pictureDiv = document.getElementById('user-photo');
-        //         let pictureObj = document.createElement('img');
-        //         pictureObj.src = pictureURL;
-        //         pictureObj.alt = 'user-picture';
-        //         pictureDiv.appendChild(pictureObj);
-
-        //         //second picture url
-        //         let pictureDivPopUp = document.getElementById('user-photo-popup');
-        //         let pictureObjPopUp = document.createElement('img');
-        //         pictureObjPopUp.src = pictureURL;
-        //         pictureDivPopUp.appendChild(pictureObjPopUp);
-
-        //         //username info
-        //         $('.username-label').html(response['username']);
-
-        //         //email info 
-        //         let userEmail = response['email'];
-        //         $('#user-email').html(userEmail);
-        //     }
-        // }
-
     } else if (checkCookie('google-user-jwt')) {
         let googleToken = getCookie('google-user-jwt');
 
@@ -83,7 +47,7 @@ $(function() {
                 setUserElements(response['name'], response['given_name'], response['email'], response['picture'], null);
 
             }
-        }
+        };
     } else {
         setUserElements('', '', '', '/images/icons/icons-user-default.png', null);
     }
@@ -102,17 +66,17 @@ function getRemDays(expirDate) {
 }
 
 function setUserElements (name, firstName, email, picture, daysRem) {
-    let pictureURL = picture;
+    // let pictureURL = picture;
     let pictureDiv = document.getElementById('user-photo');
     let pictureObj = document.createElement('img');
-    pictureObj.src = pictureURL;
+    pictureObj.src = picture;
     pictureObj.alt = 'user-picture';
     pictureDiv.appendChild(pictureObj);
 
     //second picture url
     let pictureDivPopUp = document.getElementById('user-photo-popup');
     let pictureObjPopUp = document.createElement('img');
-    pictureObjPopUp.src = pictureURL;
+    pictureObjPopUp.src = picture;
     pictureDivPopUp.appendChild(pictureObjPopUp);
 
     //username info

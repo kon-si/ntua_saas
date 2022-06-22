@@ -13,7 +13,7 @@ db_params = configParser["postgresql"]
 kafka_params = configParser["kafka"]
 
 # INITIALIZE A KAFKA PRODUCER
-producer = KafkaProducer(bootstrap_servers=kafka_params["servers"])
+producer = KafkaProducer(bootstrap_servers=kafka_params["servers"]);
 
 # PATH OF PROJECT
 dir_path = os.path.dirname(os.path.realpath(__file__))
