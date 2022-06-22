@@ -10,7 +10,7 @@ $('#total-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 let conn = null;
 
 $('#total-submit-btn').on('click', function() {
-  if (conn !== null) {conn.close();}
+  if (conn !== null && conn !== undefined) {conn.close();}
   conn = atApiCall();
 }); 
 
