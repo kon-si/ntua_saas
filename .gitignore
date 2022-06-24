@@ -45,8 +45,14 @@ frontend/bundles/package-lock.json
 /microservice03/node_modules
 /microservice04/node_modules
 
+microservice02/package-lock.json
+microservice03/package-lock.json
+microservice04/package-lock.json
+
 /microservice06/node_modules
 
 /microservice05/config.ini
+/microservice07/config.ini
+/microservice08/config.ini
 
 # /microservice01/.env

@@ -113,7 +113,7 @@ async function sendEventsToAll(dataFrom, dataTo) {
     // for all clients : if date in consume_period -> send again the data
     for (const client of clients) {
         if (doOverlap(client.date_from, client.date_to, dataFrom, dataTo)) {
-            const newData = await getFlowsData(client.in_map_code, client.out_map_code, client.date_from, client.date_to);
+            const newData = await getFlowsData(client.out_map_code, client.in_map_code, client.date_from, client.date_to);
             const newResponse = {
                 "Data": newData
             }

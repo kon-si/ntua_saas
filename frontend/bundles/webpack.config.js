@@ -8,7 +8,7 @@ module.exports = {
         auth: path.resolve(__dirname, '..', 'assets/js/authentication.js'),
         generation: path.resolve(__dirname, '..', 'assets/js/generation.js'),
         total: path.resolve(__dirname, '..', 'assets/js/total.js'),
-        flow: path.resolve(__dirname, '..', 'assets/js/flow.js'),
+        flows: path.resolve(__dirname, '..', 'assets/js/flows.js'),
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

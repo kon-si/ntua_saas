@@ -1,10 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <section>
-        <div>
-            <span>Hello</span>
+<div class="content-container">
+    <div class="header-container">
+      <form class="inputs-container">
+        <select id="generation-countries-list">
+            <option value="">Select a Country</option>
+        </select>
+        <select id="production-types-list">
+            <option value="">Production Type</option>
+        </select>
+        <div class="input-div">
+          <span>From</span>
+          <input id="generation-start-date" class="input-field" type="date">
         </div>
-    </section>
+        <div class="input-div">
+          <span>To</span>
+          <input id="generation-end-date" class="input-field" type="date">
+        </div>
+        <button id="generation-submit-btn" class="btnI" type="button">Submit</button>
+      </form>
+    </div>
+    
+    <div class="data-container">
+      <figure class="highcharts-figure">
+        <div id="main-chart-generation"></div>
+      </figure>
+    </div>
+  
 </div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="generation.js"></script>
 {% endblock %}

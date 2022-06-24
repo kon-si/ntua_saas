@@ -47,7 +47,7 @@ def end_date_calc(month_parsed, year_parsed):
         end_date = year_parsed + "-" + month_parsed + "-30"
 
     if month_parsed == "02": 
-        end_date = year_parsed + "-" + month_parsed + "-28"
+        end_date = year_parsed + "-" + str(int(month_parsed)+1) + "-01"
 
     return end_date
 
