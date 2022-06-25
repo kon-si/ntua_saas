@@ -195,6 +195,5 @@ function setDate() {
   curMonth = months[objToday.getMonth()],
   curYear = objToday.getFullYear();
   var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
-  console.log(today);
-  $('#current-date').html("&#187; " + today.toString());
+  $('.current-date').html(today.toString());
 };
