@@ -126,8 +126,8 @@ async function sendEventsToAll(dataFrom, dataTo) {
 
 // dateFrom, dateTo : time period of client request
 // messageFrom, messageTo : time period of new data
-function doOverlap(dateFrom, dateTo, messageFrom, messageTo) {  
-    if ((dateFrom >= messageFrom && dateFrom <= messageTo) || (dateTo >= messageFrom && dateTo <= messageTo)) {
+function doOverlap(dateFrom, dateTo, messageFrom, messageTo) { 
+    if ((dateFrom >= messageFrom && dateFrom <= messageTo) || (dateTo >= messageFrom && dateTo <= messageTo)  || (dateFrom <= messageFrom && dateTo >= messageTo)) {
         return true;
     } else {
         return false;

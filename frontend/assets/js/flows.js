@@ -9,7 +9,9 @@ $('#flows-countries-list-from').val(countryCodeFrom);
 $('#flows-countries-list-to').val(countryCodeTo);
 $('#flows-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 $('#flows-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-// atApiCall();
+
+// Sets Date format for Header
+setDate();
 
 let conn = null;
 
@@ -17,6 +19,17 @@ $('#flows-submit-btn').on('click', function() {
   if (conn !== null && conn !== undefined) {conn.close();}
   conn = atApiCall();
 }); 
+
+$('.reload-data-btn').on('click', function() {
+  // Restore the parameters
+  $('#flows-countries-list-from').val(countryCodeFrom);
+  $('#flows-countries-list-to').val(countryCodeTo);
+  $('#flows-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  $('#flows-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  //  Make call again
+  if (conn !== null && conn !== undefined) {conn.close();}
+  conn = atApiCall();
+});
 
 function atApiCall() {
 
@@ -40,8 +53,6 @@ function atApiCall() {
     }
     dataList.sort(comparator);
     let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.flow_value)]);
-    console.log('CHART DATA');
-    console.log(chartData);
     drawChart(chartData, 'main-chart-flows'); 
   };
 
@@ -61,7 +72,7 @@ function drawChart(inputData, chart_id) {
       text: 'Physical Energy Flows over Time'
     },
     subtitle: {
-      text: '???',
+      text: (countryCodeFrom == '' ? '' : countriesList[countryCodeFrom] +' &#x2192 ') + (countryCodeTo == '' ? '' : countriesList[countryCodeTo]) ,
       align: 'right',
       verticalAlign: 'bottom'
     },
@@ -78,18 +89,6 @@ function drawChart(inputData, chart_id) {
     }, 
     plotOptions: {
       area: {
-        // fillColor: {
-        //   linearGradient: {
-        //     x1: 0,
-        //     y1: 0,
-        //     x2: 0,
-        //     y2: 1
-        //   },
-        //   stops: [
-        //     [0, Highcharts.getOptions().colors[0]],
-        //     [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-        //   ]
-        // },
         marker: {
           radius: 2
         },
@@ -205,3 +204,17 @@ $('#flows-countries-swap').on('click', function() {
     if (conn !== null && conn !== undefined) {conn.close();}
     conn = atApiCall();
 });
+
+function setDate() {
+  var objToday = new Date(),
+  weekday = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
+  dayOfWeek = weekday[objToday.getDay()],
+  domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
+  dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
+  months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+  curMonth = months[objToday.getMonth()],
+  curYear = objToday.getFullYear();
+  var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
+  $('.current-date').html(today.toString());
+}
+

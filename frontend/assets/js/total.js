@@ -1,3 +1,5 @@
+var api_domain = 'http://localhost:9103';
+
 var countryCode = '';
 var startDate = '20220101';
 var endDate = '20220102';
@@ -5,7 +7,8 @@ var endDate = '20220102';
 $('#total-countries-list').val(countryCode);
 $('#total-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 $('#total-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-// atApiCall();
+
+// Sets Date format for Header
 setDate();
 
 let conn = null;
@@ -14,6 +17,16 @@ $('#total-submit-btn').on('click', function() {
   if (conn !== null && conn !== undefined) {conn.close();}
   conn = atApiCall();
 }); 
+
+$('.reload-data-btn').on('click', function() {
+  // Restore the parameters
+  $('#total-countries-list').val(countryCode);
+  $('#total-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  $('#total-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  //  Make call again
+  if (conn !== null && conn !== undefined) {conn.close();}
+  conn = atApiCall();
+});
 
 function atApiCall() {
 
@@ -26,7 +39,7 @@ function atApiCall() {
   endDate = $('#total-end-date').val().replace(/-/g, "");
 
 
-  var source = new EventSource(`http://localhost:9103/total/api/stream/${countryCode}/${startDate}/${endDate}`);
+  var source = new EventSource(`${api_domain}/total/api/stream/${countryCode}/${startDate}/${endDate}`);
   source.onmessage = function(event) {
     var parsedData = JSON.parse(event.data);
     let dataList = parsedData['Data'];
@@ -36,7 +49,7 @@ function atApiCall() {
     }
     dataList.sort(comparator);
     let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.total_load_value)]);
-    drawChart(chartData, 'container'); 
+    drawChart(chartData, 'main-chart-total'); 
   };
 
   return source;
@@ -55,7 +68,7 @@ function drawChart(inputData, chart_id) {
       text: 'Total Consumption over Time'
     },
     subtitle: {
-      text: '???',
+      text: (countryCode == '' ? '' : countriesList[countryCode]), 
       align: 'right',
       verticalAlign: 'bottom'
     },
@@ -72,18 +85,6 @@ function drawChart(inputData, chart_id) {
     }, 
     plotOptions: {
       area: {
-        // fillColor: {
-        //   linearGradient: {
-        //     x1: 0,
-        //     y1: 0,
-        //     x2: 0,
-        //     y2: 1
-        //   },
-        //   stops: [
-        //     [0, Highcharts.getOptions().colors[0]],
-        //     [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-        //   ]
-        // },
         marker: {
           radius: 2
         },
@@ -127,6 +128,8 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
+
+drawChart([], 'main-chart-total'); 
 
 var countriesList = {
 	"AL": "Albania",
@@ -196,4 +199,6 @@ function setDate() {
   curYear = objToday.getFullYear();
   var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
   $('.current-date').html(today.toString());
-};
+}
+
+

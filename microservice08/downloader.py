@@ -39,14 +39,15 @@ def db_connect():
     return conn, conn.cursor()
 
 def end_date_calc(month_parsed, year_parsed):
-    if month_parsed == "01" or  month_parsed == "03" or  month_parsed == "05" or  month_parsed == "07" or  month_parsed == "08" or  month_parsed == "10" or  month_parsed == "12": 
-        end_date = year_parsed + "-" + month_parsed + "-31"
+    if (month_parsed == "12") :
+        end_date = str(int(year_parsed)+1) + "-"
+    else :
+        end_date = year_parsed + "-"
 
-    if month_parsed == "04" or  month_parsed == "06" or  month_parsed == "09" or  month_parsed == "11":
-        end_date = year_parsed + "-" + month_parsed + "-30"
+    if (int(month_parsed) < 9):
+        end_date += "0"
 
-    if month_parsed == "02": 
-        end_date = year_parsed + "-" + str(int(month_parsed)+1) + "-01"
+    end_date += str(int(month_parsed)+1) + "-01"
 
     return end_date
 

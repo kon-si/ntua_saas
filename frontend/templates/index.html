@@ -1,38 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <section>
-        <div>
-            <span>Hello <span id="username-label-home" class="username-label"></span></span>
-            <span class="info-date"></span>
-            <div class="premium-box"></div>
-        </div>
-        <div class="queries-box"></div>
-    </section>
-    <section></section>
-    <section></section>
-
+<div class="content-container">
+    <div class="header-container">
+      <div class="info-container"> 
+        <h2 id="greeting-header"></h2>
+        <span class="current-date"></span>
+      </div>
+    </div>
 </div>
 
 {% endblock %}
 {% block scripts %}
-<!-- <script type="text/javascript" src="main.js"></script> -->
+<script type="text/javascript" src="home.js"></script>
 {% endblock %}
-
-
- <!-- WELCOME BACK <span id="username-label"></span>!
-    <br> -->
-    <!-- <div id="g_id_onload" data-auto_prompt="false"
-        data-client_id="672536076610-rogv5neidkecehc646ag644c6j8e59o7.apps.googleusercontent.com"
-        data-callback="handleCredentialResponse">
-    </div> -->
-    <!-- <div class="g_id_signin" 
-        data-type="standard"
-        data-text="continue_with"
-        data-theme="filled_black"
-        data-width="360">
-    </div> -->
-    <!-- <div id="user-photo">
-    </div>
-    <br>
-    <button id="logout-btn">LOG OUT</button> -->

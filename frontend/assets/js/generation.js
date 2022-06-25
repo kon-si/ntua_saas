@@ -10,12 +10,26 @@ $('#production-types-list').val(prodType);
 $('#generation-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 $('#generation-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 
+// Sets Date format for Header
+setDate();
+
 let conn = null;
 
 $('#generation-submit-btn').on('click', function() {
   if (conn !== null && conn !== undefined) {conn.close();}
   conn = atApiCall();
 }); 
+
+$('.reload-data-btn').on('click', function() {
+  // Restore the parameters
+  $('#generation-countries-list').val(countryCode);
+  $('#production-types-list').val(prodType);
+  $('#generation-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  $('#generation-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+  //  Make call again
+  if (conn !== null && conn !== undefined) {conn.close();}
+  conn = atApiCall();
+});
 
 function atApiCall() {
 
@@ -62,7 +76,7 @@ function drawChart(inputData, chart_id) {
       text: 'Energy Generation over Time'
     },
     subtitle: {
-      text: (countryCode == '' ? '' : countriesList[countryCode]) + (prodType == '' ? '' : countriesList[countryCode]),
+      text: (countryCode == '' ? '' : countriesList[countryCode]) +' '+ (prodType == '' ? '' : '('+productionTypesList[prodType]+')'),
       align: 'right',
       verticalAlign: 'bottom'
     },
@@ -209,3 +223,17 @@ for (let p in productionTypesList) {
   newOption.innerHTML = productionTypesList[p];
   prodTypesSelector.appendChild(newOption);
 }
+
+function setDate() {
+  var objToday = new Date(),
+  weekday = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
+  dayOfWeek = weekday[objToday.getDay()],
+  domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
+  dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
+  months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+  curMonth = months[objToday.getMonth()],
+  curYear = objToday.getFullYear();
+  var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
+  $('.current-date').html(today.toString());
+}
+
