@@ -1,4 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="content-container">
+    <div class="header-container">
+      <form class="inputs-container">
+        <select id="flows-countries-list-from">
+            <option value="">Select a Country</option>
+        </select>
+        <i id="flows-countries-swap" class="material-icons nav-icon" style="cursor: pointer;">sync_alt</i>
+        <select id="flows-countries-list-to">
+            <option value="">Select a Country</option>
+        </select>
+        <div class="input-div">
+          <span>From</span>
+          <input id="flows-start-date" class="input-field" type="date">
+        </div>
+        <div class="input-div">
+          <span>To</span>
+          <input id="flows-end-date" class="input-field" type="date">
+        </div>
+        <button id="flows-submit-btn" class="btnI" type="button">Submit</button>
+      </form>
+    </div>
+    
+    <div class="data-container">
+      <figure class="highcharts-figure">
+        <div id="main-chart-flows"></div>
+      </figure>
+    </div>
+  
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="flows.js"></script>
 {% endblock %}
