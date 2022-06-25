@@ -92,3 +92,4 @@ function setUserElements (name, firstName, email, picture, daysRem) {
     $('.subscription-time').html(daysRemActual.toString() + ' days left');
 }
 
+  
