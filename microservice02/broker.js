@@ -1,6 +1,6 @@
 const { Kafka } = require ('kafkajs'); // Kafka instance
 
-const clientId = 'EnergyLive'; // it lets kafka know who produced the messages
+const clientId = 'EnergyLive-flows'; // it lets kafka know who produced the messages
 const brokers = [
 	'localhost:9092'
 ]

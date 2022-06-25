@@ -20,7 +20,7 @@ const consume = async () => {
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'flows',
-        fromBeginning: true
+        fromBeginning: false
     })
     await consumer.run({
         eachMessage: ({ message }) => {
