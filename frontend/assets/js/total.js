@@ -6,6 +6,7 @@ $('#total-countries-list').val(countryCode);
 $('#total-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 $('#total-end-date').val(endDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
 // atApiCall();
+setDate();
 
 let conn = null;
 
@@ -34,7 +35,7 @@ function atApiCall() {
       window.alert('! No data for ' + countriesList[countryCode]);
     }
     dataList.sort(comparator);
-    chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.total_load_value)]);
+    let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.total_load_value)]);
     drawChart(chartData, 'container'); 
   };
 
@@ -183,3 +184,17 @@ for (let c in countriesList) {
   newOption.innerHTML = countriesList[c];
   countriesSelector.appendChild(newOption);
 }
+
+function setDate() {
+  var objToday = new Date(),
+  weekday = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
+  dayOfWeek = weekday[objToday.getDay()],
+  domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
+  dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
+  months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+  curMonth = months[objToday.getMonth()],
+  curYear = objToday.getFullYear();
+  var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
+  console.log(today);
+  $('#current-date').html("&#187; " + today.toString());
+};

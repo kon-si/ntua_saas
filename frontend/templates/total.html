@@ -3,19 +3,26 @@
 
 <div class="content-container">
   <div class="header-container">
+    <div class="info-container"> 
+      <h2>Actual Total Load</h2>
+      <span id="current-date"></span>
+    </div>
     <form class="inputs-container">
-      <select id="total-countries-list">
-        <option value="">Select a Country</option>
+      <select id="total-countries-list" class="container-style country">
+        <option value="">Country</option>
       </select>
       <div class="input-div">
         <span>From</span>
-        <input id="total-start-date" class="input-field" type="date">
+        <input id="total-start-date" class="input-field container-style" type="date">
       </div>
       <div class="input-div">
         <span>To</span>
-        <input id="total-end-date" class="input-field" type="date">
+        <input id="total-end-date" class="input-field container-style" type="date">
       </div>
-      <button id="total-submit-btn" class="btnI" type="button">Submit</button>
+      <div id="total-submit-btn" class="btn-style">
+        <span><i class="material-icons">send</i></span>
+        <span class="left">Submit</span>
+      </div>
     </form>
   </div>
   
