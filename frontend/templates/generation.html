@@ -2,22 +2,30 @@
 {% block content %}
 <div class="content-container">
     <div class="header-container">
+      <div class="info-container"> 
+        <h2>Generation per Type</h2>
+        <span class="current-date"></span>
+      </div>
       <form class="inputs-container">
-        <select id="generation-countries-list">
+        <select id="generation-countries-list" class="input-field country">
             <option value="">Select a Country</option>
         </select>
-        <select id="production-types-list">
+        <select id="production-types-list" class="input-field country">
             <option value="">Production Type</option>
         </select>
         <div class="input-div">
           <span>From</span>
-          <input id="generation-start-date" class="input-field" type="date">
+          <input id="generation-start-date" class="input-field container-style" type="date">
         </div>
         <div class="input-div">
           <span>To</span>
-          <input id="generation-end-date" class="input-field" type="date">
+          <input id="generation-end-date" class="input-field container-style" type="date">
         </div>
-        <button id="generation-submit-btn" class="btnI" type="button">Submit</button>
+        <div id="generation-submit-btn" class="btn-style">
+          <span><i class="material-icons">send</i></span>
+          <span class="left">Submit</span>
+        </div>
+        <!-- <button id="generation-submit-btn" class="btnI" type="button">Submit</button> -->
       </form>
     </div>
     

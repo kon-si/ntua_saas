@@ -3,12 +3,16 @@
 
 <div class="content-container">
     <div class="header-container">
+      <div class="info-container"> 
+        <h2>Physical Flows</h2>
+        <span class="current-date"></span>
+      </div>
       <form class="inputs-container">
-        <select id="flows-countries-list-from">
+        <select id="flows-countries-list-from" class="input-field country">
             <option value="">Select a Country</option>
         </select>
         <i id="flows-countries-swap" class="material-icons nav-icon" style="cursor: pointer;">sync_alt</i>
-        <select id="flows-countries-list-to">
+        <select id="flows-countries-list-to" class="input-field country">
             <option value="">Select a Country</option>
         </select>
         <div class="input-div">
@@ -19,7 +23,10 @@
           <span>To</span>
           <input id="flows-end-date" class="input-field" type="date">
         </div>
-        <button id="flows-submit-btn" class="btnI" type="button">Submit</button>
+        <div id="flows-submit-btn" class="btn-style">
+          <span><i class="material-icons">send</i></span>
+          <span class="left">Submit</span>
+        </div>
       </form>
     </div>
     

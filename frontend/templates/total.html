@@ -3,9 +3,13 @@
 
 <div class="content-container">
   <div class="header-container">
+    <div class="info-container"> 
+      <h2>Actual Total Load</h2>
+      <span class="current-date"></span>
+    </div>
     <form class="inputs-container">
-      <select id="total-countries-list">
-        <option value="">Select a Country</option>
+      <select id="total-countries-list" class="input-field country">
+        <option value="">Country</option>
       </select>
       <div class="input-div">
         <span>From</span>
@@ -15,13 +19,16 @@
         <span>To</span>
         <input id="total-end-date" class="input-field" type="date">
       </div>
-      <button id="total-submit-btn" class="btnI" type="button">Submit</button>
+      <div id="total-submit-btn" class="btn-style">
+        <span><i class="material-icons">send</i></span>
+        <span class="left">Submit</span>
+      </div>
     </form>
   </div>
   
   <div class="data-container">
     <figure class="highcharts-figure">
-      <div id="container"></div>
+      <div id="container" class="chart-div"></div>
     </figure>
   </div>
 
