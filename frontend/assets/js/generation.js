@@ -1,3 +1,5 @@
+var api_domain = 'http://localhost:9104';
+
 var countryCode = '';
 var prodType = ''
 var startDate = '20220101';
@@ -31,7 +33,7 @@ function atApiCall() {
   endDate = $('#generation-end-date').val().replace(/-/g, "");
 
 
-  var source = new EventSource(`http://localhost:9104/generation/api/stream/${countryCode}/${prodType}/${startDate}/${endDate}`);
+  var source = new EventSource(`${api_domain}/generation/api/stream/${countryCode}/${prodType}/${startDate}/${endDate}`);
   source.onmessage = function(event) {
     var parsedData = JSON.parse(event.data);
     let dataList = parsedData['Data'];
@@ -60,7 +62,7 @@ function drawChart(inputData, chart_id) {
       text: 'Energy Generation over Time'
     },
     subtitle: {
-      text: '???',
+      text: (countryCode == '' ? '' : countriesList[countryCode]) + (prodType == '' ? '' : countriesList[countryCode]),
       align: 'right',
       verticalAlign: 'bottom'
     },
@@ -120,6 +122,8 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
+
+drawChart([], 'main-chart-generation'); 
 
 var countriesList = {
 	"AL": "Albania",

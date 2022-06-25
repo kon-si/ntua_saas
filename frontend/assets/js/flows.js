@@ -1,3 +1,5 @@
+var api_domain = 'http://localhost:9102';
+
 var countryCodeFrom = '';
 var countryCodeTo = '';
 var startDate = '20220101';
@@ -28,7 +30,7 @@ function atApiCall() {
   endDate = $('#flows-end-date').val().replace(/-/g, "");
 
 
-  var source = new EventSource(`http://localhost:9102/flows/api/stream/${countryCodeFrom}/${countryCodeTo}/${startDate}/${endDate}`);
+  var source = new EventSource(`${api_domain}/flows/api/stream/${countryCodeFrom}/${countryCodeTo}/${startDate}/${endDate}`);
   source.onmessage = function(event) {
     var parsedData = JSON.parse(event.data);
     let dataList = parsedData['Data'];
@@ -38,6 +40,8 @@ function atApiCall() {
     }
     dataList.sort(comparator);
     let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.flow_value)]);
+    console.log('CHART DATA');
+    console.log(chartData);
     drawChart(chartData, 'main-chart-flows'); 
   };
 
@@ -129,6 +133,8 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
+
+drawChart([], 'main-chart-flows'); 
 
 var countriesList = {
 	"AL": "Albania",
