@@ -1,7 +1,7 @@
-var api_domain = '127.0.0.1:9101';
+var api_domain = 'http://127.0.0.1:9101';
 // var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
 // var web_domain = '127.0.0.1:80';
-var web_domain = 'localhost:80';
+var web_domain = 'http://localhost:80';
 
 $(function() {
     $('#login-submit-btn').on('click', function () {
@@ -18,7 +18,7 @@ $(function() {
 // LOGIN REQUEST (with website credentials)
 function makeLoginCall(username, email, password) {
     $.ajax({
-        url: 'http://'+api_domain+'/authorisation/api/login',
+        url: `${api_domain}/authorisation/api/login`,
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -33,11 +33,11 @@ function makeLoginCall(username, email, password) {
         success: function() {
             console.log('You are logged in !');
             deleteCookie('google-user-jwt');
-            window.location.replace('http://'+web_domain+'/');
+            window.location.replace(`${web_domain}/`);
         },
         error: function() { // WRONG CREDENTIALS
             console.log('Error in login !');
-            window.location.replace('http://'+web_domain+'/login');
+            window.location.replace(`${web_domain}/login`);
         }
     });
 }
@@ -64,7 +64,7 @@ function fetchUserDetails(cred) {
         if (Http.readyState === XMLHttpRequest.DONE) {
             console.log(Http.responseText);
             const response = JSON.parse(Http.responseText);
-            window.location.replace('http://'+web_domain+'/');
+            window.location.replace(`${web_domain}/`);
         }
     }
 }

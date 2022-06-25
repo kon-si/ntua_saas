@@ -1,7 +1,7 @@
-var api_domain = '127.0.0.1:9101';
+var api_domain = 'http://127.0.0.1:9101';
 // var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
 // var web_domain = '127.0.0.1:80';
-var web_domain = 'localhost:80';
+var web_domain = 'http://localhost:80';
 
 $(function() {
 
@@ -11,7 +11,7 @@ $(function() {
         console.log("User is logged in ! (Google)");
     } else {
         $.ajax({
-            url: 'http://'+api_domain+'/authorisation/api/welcome',
+            url: `${api_domain}/authorisation/api/welcome`,
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
@@ -22,7 +22,7 @@ $(function() {
                 console.log('You are logged in !');
             },
             error: function(){  // NO TOKEN
-                window.location.replace('http://'+web_domain+'/login');
+                window.location.replace(`${web_domain}/login`);
                 console.log("Not logged in :(");
             }
         });
@@ -34,10 +34,10 @@ $(function() {
 $('.signout-btn').on('click', function () {
     if (checkCookie('google-user-jwt')) {
         deleteCookie('google-user-jwt');
-        window.location.replace('http://'+web_domain+'/login');
+        window.location.replace(`${web_domain}/login`);
     } else {
         $.ajax({
-            url: 'http://'+api_domain+'/authorisation/api/logout',
+            url: `${api_domain}/authorisation/api/logout`,
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
@@ -47,12 +47,12 @@ $('.signout-btn').on('click', function () {
             success: function () {
                 deleteCookie('x-access-token');
                 deleteCookie('google-user-jwt');
-                window.location.replace('http://'+web_domain+'/login');
+                window.location.replace(`${web_domain}/login`);
             },
             error: function(){  // NO TOKEN
                 deleteCookie('x-access-token');
                 deleteCookie('google-user-jwt');
-                window.location.replace('http://'+web_domain+'/login');
+                window.location.replace(`${web_domain}/login`);
             }
         });
     }
@@ -61,7 +61,7 @@ $('.signout-btn').on('click', function () {
 // RENEW SUBSCRIPTION
 $('.extend-btn').on('click', function () {
     $.ajax({
-        url: 'http://'+api_domain+'/authorisation/api/renew',
+        url: `${api_domain}/authorisation/api/renew`,
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -84,7 +84,7 @@ $('.extend-btn').on('click', function () {
 function updateRemDays() {
     if (checkCookie('x-access-token')) {
         $.ajax({
-            url: 'http://'+api_domain+'/authorisation/api/userinfo/',
+            url: `${api_domain}/authorisation/api/userinfo/`,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',

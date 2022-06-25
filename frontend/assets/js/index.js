@@ -1,16 +1,14 @@
 import "../css/main.scss"
 import "./nav.js"
 
-var api_domain = '127.0.0.1:9101';
-// var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
-// var web_domain = '127.0.0.1:80';
-var web_domain = 'localhost:80';
+var api_domain = 'http://127.0.0.1:9101';
+// var api_domain = 'https://authentication-service-47nenum5kq-ew.a.run.app';
 
 $(function() {
     if (checkCookie('x-access-token')) {
         // let userToken = getCookie('x-access-token');
         $.ajax({
-            url: 'http://'+api_domain+'/authorisation/api/userinfo/',
+            url: `${api_domain}/authorisation/api/userinfo/`,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',

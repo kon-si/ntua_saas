@@ -1,4 +1,4 @@
-var api_domain = '127.0.0.1:9101';
+var api_domain = 'http://127.0.0.1:9101';
 
 $(function() {
     // Sets Date format for Header
@@ -22,7 +22,7 @@ function setDate() {
 function setName() {
     if (checkCookie('x-access-token')) {
         $.ajax({
-            url: 'http://'+api_domain+'/authorisation/api/userinfo/',
+            url: `${api_domain}/authorisation/api/userinfo/`,
             type: 'GET',
             dataType: 'json',
             contentType: 'application/json',

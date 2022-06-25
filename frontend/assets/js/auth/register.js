@@ -1,7 +1,7 @@
-var api_domain = '127.0.0.1:9101';
+var api_domain = 'http://127.0.0.1:9101';
 // var api_domain = 'authentication-service-47nenum5kq-ew.a.run.app';
 // var web_domain = '127.0.0.1:80';
-var web_domain = 'localhost:80';
+var web_domain = 'http://localhost:80';
 
 $(function() {
     $('#register-submit-btn').on('click', function () {
@@ -16,7 +16,7 @@ $(function() {
 // REGISTER REQUEST
 function makeRegisterCall(username, email, password) {
     $.ajax({
-        url: 'http://'+api_domain+'/authorisation/api/register',
+        url: `${api_domain}/authorisation/api/register`,
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -31,7 +31,7 @@ function makeRegisterCall(username, email, password) {
             "password" : password
         }),
         success: function() {
-            window.location.replace('http://'+web_domain+'/');
+            window.location.replace(`${web_domain}/`);
         },
         error: function() { // WRONG CREDENTIALS
             console.log('Oops, something went wrong !');
