@@ -2,7 +2,6 @@ import os
 import psycopg2
 from kafka import KafkaProducer
 import configparser
-import json
 
 # PARAMETERS
 config_path = './config.ini'
