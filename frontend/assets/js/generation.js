@@ -197,7 +197,7 @@ for (let c in countriesList) {
 }
 
 let productionTypesList = {
-    "Fossil Brown coal/Lignite": "Lignite",
+    "Fossil Brown coal%2FLignite": "Lignite",
     "Wind Onshore": "Wind Onshore",
     "Wind Offshore": "Wind Offshore",
     "Fossil Gas": "Fossil Gas",
