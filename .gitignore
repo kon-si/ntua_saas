@@ -56,3 +56,8 @@ microservice04/package-lock.json
 /microservice08/config.ini
 
 # /microservice01/.env
+
+# CONFIG Files
+/microservice-parser-total/config.ini
+/microservice-parser-generation/config.ini
+/microservice-parser-flows/config.ini
