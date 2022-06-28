@@ -39,17 +39,18 @@ frontend/bundles/dist/*
 frontend/bundles/node_modules
 frontend/bundles/package-lock.json 
 
-/microservice01/authentication-front/node_modules
-/microservice01/node_modules
-/microservice02/node_modules
-/microservice03/node_modules
-/microservice04/node_modules
+/microservice-authentication/authentication-front/node_modules
+/microservice-authentication/node_modules
+/microservice-api-flows/node_modules
+/microservice-importer-flows/saas-2022-bc1a910f9c03.json
+/microservice-api-total/node_modules
+/microservice-api-generation/node_modules
 
-microservice02/package-lock.json
-microservice03/package-lock.json
-microservice04/package-lock.json
+microservice-api-flows/package-lock.json
+microservice-api-total/package-lock.json
+microservice-api-generation/package-lock.json
 
-/microservice06/node_modules
+/microservice-importer-flows/node_modules
 
 /microservice05/config.ini
 /microservice07/config.ini
