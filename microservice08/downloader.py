@@ -40,14 +40,14 @@ def db_connect():
 
 def end_date_calc(month_parsed, year_parsed):
     if (month_parsed == "12") :
-        end_date = str(int(year_parsed)+1) + "-"
+        end_date = str(int(year_parsed)+1) + "-01-01"
     else :
         end_date = year_parsed + "-"
 
-    if (int(month_parsed) < 9):
-        end_date += "0"
+        if (int(month_parsed) < 9):
+            end_date += "0"
 
-    end_date += str(int(month_parsed)+1) + "-01"
+        end_date += str(int(month_parsed)+1) + "-01"
 
     return end_date
 

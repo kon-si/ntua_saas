@@ -7,9 +7,14 @@
         <span class="current-date"></span>
       </div>
     </div>
+
+    <div id="map" class="map"></div>
+
 </div>
 
 {% endblock %}
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList"></script>
 <script type="text/javascript" src="home.js"></script>
 {% endblock %}
