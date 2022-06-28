@@ -1,3 +1,5 @@
+import "./map"
+
 var api_domain = 'http://127.0.0.1:9101';
 
 $(function() {
@@ -59,3 +61,4 @@ function setName() {
         $('#greeting-header').html('Hello');
     }
 }
+

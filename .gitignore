@@ -12,7 +12,7 @@
 /build
 
 # data 
-architecture/Data
+# architecture/Data
 
 # misc
 .DS_Store
