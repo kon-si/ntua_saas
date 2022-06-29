@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
 const { kafka, clientId } = require('./broker');
 const {Storage} = require('@google-cloud/storage');
+const internal = require("stream");
 const bucketName = 'flows-bucket';
 
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
@@ -26,19 +27,20 @@ async function downloadFile(srcFilename, destFilename, bucketName) {
 }
 
 const consumer = kafka.consumer({ // NEW CONSUMER
-    groupId: clientId
+    groupId: clientId,
 })
+
+// let offset = 0;
 
 const consume = async () => {
     await db.checkConnection();
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'flows_importer',
-        //autoCommit: false,
-        fromOffset: 'latest',
+        // autoCommit: false,
         fromBeginning: false
     })
-    await consumer.run({
+    consumer.run({
         eachMessage: async ({ message }) => {	
             const srcFilename = `${message.value}`;
             const destFilename = __dirname + '/import_files/' + srcFilename;
@@ -47,15 +49,14 @@ const consume = async () => {
             await downloadFile(srcFilename, destFilename, bucketName).catch(console.error);
 
             const date = srcFilename.substring(0,7).replace("_", "-");
+            const year = date.substring(0, 4);
             const month = date.substring(5, 7);
             let date_to, date_from = date + "-01";
 
-            if (month == "02")
-                date_to = date + "-28"
-            else if (month == "04" || month == "06" || month == "09" || month == "11")
-                date_to = date + "-30"
+            if (month == "12")
+                date_to = year + "-01-01"
             else
-                date_to = date + "-31"
+                date_to = year + "-0" + (parseInt(month) + 1).toString() + "-01"
 
             await db.physical_flows.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
@@ -64,9 +65,11 @@ const consume = async () => {
                 replacements: { file: destFilename },
                 type: QueryTypes.COPY
             });	
-            await fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
+            fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
         },
     })
+    // offset++;
+    // consumer.seek({ topic: 'flows_importer', partition: 0, offset: offset })
 }
 
 try {
