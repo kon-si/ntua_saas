@@ -1,52 +1,52 @@
 const path = require("path");
-const fs = require('fs')
+const fs = require('fs');
+const AdmZip = require("adm-zip");
 const db = require("./config/database");
 const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
 const { kafka, clientId } = require('./broker');
 const {Storage} = require('@google-cloud/storage');
-const internal = require("stream");
-const bucketName = 'flows-bucket';
 
+const bucketName = 'flows-bucket';
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
-const storageConf = {keyFilename:serviceKey}
-const storage = new Storage(storageConf)
+const storageConf = {keyFilename:serviceKey};
+const storage = new Storage(storageConf);
 
 async function downloadFile(srcFilename, destFilename, bucketName) {
-
-    // passing the options
     const options = {
         destination: destFilename,
     };
 
-    // download object from Google Cloud Storage bucket
+    // download object from Cloud Storage bucket
     await storage.bucket(bucketName).file(srcFilename).download(options);
 
-    // [optional] a good log can help you in debugging
-    console.log("Downloaded " + srcFilename + " from bucket " +  bucketName);
+    console.log("Downloaded " + srcFilename + " from " +  bucketName);
 }
 
 const consumer = kafka.consumer({ // NEW CONSUMER
     groupId: clientId,
 })
 
-// let offset = 0;
-
 const consume = async () => {
     await db.checkConnection();
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'flows_importer',
-        // autoCommit: false,
         fromBeginning: false
     })
     consumer.run({
         eachMessage: async ({ message }) => {	
-            const srcFilename = `${message.value}`;
+            const srcFilenameZip = `${message.value}`;
+            const srcFilename = srcFilenameZip.substring(0, srcFilenameZip.lastIndexOf(".")) + ".csv";
+            const destFilenameZip = __dirname + '/import_files/' + srcFilenameZip;
             const destFilename = __dirname + '/import_files/' + srcFilename;
 
-            console.log("Downloading " + srcFilename);
-            await downloadFile(srcFilename, destFilename, bucketName).catch(console.error);
+            console.log("Downloading " + srcFilenameZip);
+            await downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
+
+            const zip = new AdmZip(destFilenameZip);
+            zip.extractAllTo(__dirname + '/import_files');
+            console.log("Extracted " + srcFilename);
 
             const date = srcFilename.substring(0,7).replace("_", "-");
             const year = date.substring(0, 4);
@@ -54,7 +54,7 @@ const consume = async () => {
             let date_to, date_from = date + "-01";
 
             if (month == "12")
-                date_to = year + "-01-01"
+                date_to = (parseInt(year) + 1).toString() + "-01-01"
             else
                 date_to = year + "-0" + (parseInt(month) + 1).toString() + "-01"
 
@@ -64,12 +64,12 @@ const consume = async () => {
             {
                 replacements: { file: destFilename },
                 type: QueryTypes.COPY
-            });	
+            });
+
+            fs.unlink(destFilenameZip, () => {console.log(srcFilenameZip, ' deleted');});	
             fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
         },
     })
-    // offset++;
-    // consumer.seek({ topic: 'flows_importer', partition: 0, offset: offset })
 }
 
 try {
