@@ -39,24 +39,44 @@ frontend/bundles/dist/*
 frontend/bundles/node_modules
 frontend/bundles/package-lock.json 
 
-/microservice-authentication/authentication-front/node_modules
+# Authentication Microservice
 /microservice-authentication/node_modules
+/microservice-authentication/package-lock.json
+#/microservice-authentication/.env
+
+# Flows API Microservice
 /microservice-api-flows/node_modules
-/microservice-importer-flows/saas-2022-bc1a910f9c03.json
-/microservice-api-total/node_modules
-/microservice-api-generation/node_modules
+/microservice-api-flows/package-lock.json
+#/microservice-api-flows/.env
 
-microservice-api-flows/package-lock.json
-microservice-api-total/package-lock.json
-microservice-api-generation/package-lock.json
-
+# Flows Importer Microservice
 /microservice-importer-flows/node_modules
+/microservice-importer-flows/package-lock.json
+#/microservice-importer-flows/.env
+
+# Total API Microservice
+/microservice-api-total/node_modules
+/microservice-api-total/package-lock.json
+#/microservice-api-total/.env
+
+# Total Importer Microservice
+/microservice-importer-total/node_modules
+/microservice-importer-total/package-lock.json
+#/microservice-importer-total/.env
+
+# Generation API Microservice
+/microservice-api-generation/node_modules
+/microservice-api-generation/package-lock.json
+#/microservice-api-generation/.env
+
+# Generation Importer Microservice
+/microservice-importer-generation/node_modules
+/microservice-importer-generation/package-lock.json
+#/microservice-importer-generation/.env
 
 /microservice05/config.ini
 /microservice07/config.ini
 /microservice08/config.ini
-
-# /microservice01/.env
 
 # CONFIG Files
 /microservice-parser-total/config.ini
