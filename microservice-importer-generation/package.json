@@ -1,0 +1,27 @@
+{
+  "name": "microservice06",
+  "version": "1.0.0",
+  "description": "## Actual Total Load API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node importer.js",
+    "dev": "nodemon importer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^6.2.1",
+    "adm-zip": "^0.5.9",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "kafkajs": "^2.1.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
