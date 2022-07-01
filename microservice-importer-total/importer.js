@@ -55,7 +55,7 @@ const consume = async () => {
 
             if (month == "12")
                 date_to = (parseInt(year) + 1).toString() + "-01-01"
-            else if (parseInt(month) > 9)
+            else if (parseInt(month) >= 9)
                 date_to = year + "-" + (parseInt(month) + 1).toString() + "-01"
             else
                 date_to = year + "-0" + (parseInt(month) + 1).toString() + "-01"
