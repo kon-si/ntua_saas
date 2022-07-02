@@ -5,7 +5,7 @@
 ### Contributors
 - [nickbel7](https://github.com/nickbel7)                  
 - [ElinaSyr](https://github.com/ElinaSyr)                  
-- [el18134](https://github.com/el18183)                    
+- [kon-si](https://github.com/kon-si)                    
 - [christidia](https://github.com/christidia)
 - [nikosece2019](https://github.com/nikosece2019)
   
