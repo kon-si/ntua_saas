@@ -65,6 +65,7 @@ frontend/bundles/package-lock.json
 #/microservice-api-total/.env
 
 # Total Parser Microservice
+/microservice-parser-total/saas-2022-bc1a910f9c03.json
 #/microservice-parser-total/config.ini
 
 # Total Importer Microservice
@@ -79,6 +80,7 @@ frontend/bundles/package-lock.json
 #/microservice-api-generation/.env
 
 # Generation Parser Microservice
+/microservice-parser-generation/saas-2022-bc1a910f9c03.json
 #/microservice-parser-generation/config.ini
 
 # Generation Importer Microservice
