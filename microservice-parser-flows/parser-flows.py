@@ -71,8 +71,10 @@ for message in consumer:
             print("The write operation timed out. Retrying...")
         else:
             print("Uploaded " + file_name_zip + " to flows-bucket")
-            # os.remove('./import_files/' + file_name_zip) 
-            print("Deleted " + file_name_zip)
+            # os.remove('./parse_files/' + file_name) 
+            os.remove('./import_files/' + file_name) 
+            os.remove('./import_files/' + file_name_zip) 
+            print("Deleted " + file_name_zip + ", " + file_name)
             break
     else:
         print("The write operation timed out. Retries exceeded.")
