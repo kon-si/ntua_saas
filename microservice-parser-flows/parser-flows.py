@@ -60,7 +60,7 @@ for message in consumer:
 
     # Upload file to bucket
     client = storage.Client.from_service_account_json('./saas-2022-bc1a910f9c03.json')
-    bucket = client.get_bucket('flows-bucket', timeout=300.0)
+    bucket = client.get_bucket(kafka_params["bucket_name"], timeout=300.0)
     blob = bucket.blob(file_name_zip)
 
     for attempt in range(10):
@@ -70,7 +70,7 @@ for message in consumer:
         except:
             print("The write operation timed out. Retrying...")
         else:
-            print("Uploaded " + file_name_zip + " to flows-bucket")
+            print("Uploaded " + file_name_zip + " to " + kafka_params["bucket_name"])
             # os.remove('./parse_files/' + file_name) 
             os.remove('./import_files/' + file_name) 
             os.remove('./import_files/' + file_name_zip) 
@@ -82,7 +82,7 @@ for message in consumer:
     # Send message to kafka for each file parse
     producer.send(kafka_params["producer_topic"], file_name_zip.encode('utf-8'))
     producer.flush()
-    print("Message: " + file_name_zip + " sent to topic flows")
+    print("Message: " + file_name_zip + " sent to topic " + kafka_params["producer_topic"])
 
     # Check if file list is empty
     if (len(files_list) == 0):
