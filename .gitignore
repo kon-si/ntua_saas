@@ -52,6 +52,7 @@ frontend/bundles/package-lock.json
 # Flows Importer Microservice
 /microservice-importer-flows/node_modules
 /microservice-importer-flows/package-lock.json
+/microservice-importer-flows/saas-2022-bc1a910f9c03.json
 #/microservice-importer-flows/.env
 
 # Total API Microservice
@@ -62,6 +63,7 @@ frontend/bundles/package-lock.json
 # Total Importer Microservice
 /microservice-importer-total/node_modules
 /microservice-importer-total/package-lock.json
+/microservice-importer-total/saas-2022-bc1a910f9c03.json
 #/microservice-importer-total/.env
 
 # Generation API Microservice
@@ -72,6 +74,7 @@ frontend/bundles/package-lock.json
 # Generation Importer Microservice
 /microservice-importer-generation/node_modules
 /microservice-importer-generation/package-lock.json
+/microservice-importer-generation/saas-2022-bc1a910f9c03.json
 #/microservice-importer-generation/.env
 
 /microservice05/config.ini
