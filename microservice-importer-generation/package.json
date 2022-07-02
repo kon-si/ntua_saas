@@ -2,7 +2,7 @@
   "name": "microservice06",
   "version": "1.0.0",
   "description": "## Actual Total Load API",
-  "main": "index.js",
+  "main": "importer.js",
   "scripts": {
     "start": "node importer.js",
     "dev": "nodemon importer.js",
