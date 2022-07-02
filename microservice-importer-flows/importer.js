@@ -9,20 +9,10 @@ const {Storage} = require('@google-cloud/storage');
 
 const bucketName = 'flows-bucket';
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
-const storageConf = {keyFilename:serviceKey};
+const storageConf = { keyFilename:serviceKey };
 const storage = new Storage(storageConf);
 
-async function downloadFile(srcFilename, destFilename, bucketName) {
-    const options = {
-        destination: destFilename,
-    };
-
-    // download object from Cloud Storage bucket
-    await storage.bucket(bucketName).file(srcFilename).download(options);
-
-    console.log("Downloaded " + srcFilename + " from " +  bucketName);
-}
-
+// KAFKA COMMUNICATION WITH PARSER AND APIs
 const consumer = kafka.consumer({ // NEW CONSUMER
     groupId: clientId,
 })
@@ -48,39 +38,65 @@ async function produce (myMessage) {
     producer.disconnect();
 }
 
+// CORE IMPORT FUNCTIONS
+async function downloadFile(srcFilename, destFilename, bucketName) {
+    const options = {
+        destination: destFilename,
+    };
+
+    // download object from Cloud Storage bucket
+    await storage.bucket(bucketName).file(srcFilename).download(options);
+
+    console.log("Downloaded " + srcFilename + " from " +  bucketName);
+}
+
+function calc_end_date(month, year) {
+    let end_date = '';
+    if (month == "12") {
+        end_date = (parseInt(year) + 1).toString() + "-01-01"
+    } else {
+        end_date = year + "-"
+
+        if (parseInt(month) < 9)
+            end_date += "0"
+
+        end_date += (parseInt(month) + 1).toString() + "-01"
+    }
+
+    return end_date;
+}
+
 const consume = async () => {
     await db.checkConnection();
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'flows_importer',
-        fromBeginning: false
+        fromBeginning: true
     })
-    consumer.run({
-        eachMessage: async ({ message }) => {	
+    consumer.run({ 
+        eachMessage: async ({ message }) => {	// on new message from parser
+            // #1 DOWNLOAD THE ZIP FROM THE SHARED STORAGE
             const srcFilenameZip = `${message.value}`;
             const srcFilename = srcFilenameZip.substring(0, srcFilenameZip.lastIndexOf(".")) + ".csv";
             const destFilenameZip = __dirname + '/import_files/' + srcFilenameZip;
             const destFilename = __dirname + '/import_files/' + srcFilename;
 
-            console.log("Downloading " + srcFilenameZip);
+            console.log("Downloading " + srcFilenameZip + " ...");
             await downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
 
+            // #2 UNZIP THE ZIP FILE
             const zip = new AdmZip(destFilenameZip);
             zip.extractAllTo(__dirname + '/import_files');
             console.log("Extracted " + srcFilename);
 
-            const date = srcFilename.substring(0,7).replace("_", "-");
-            const year = date.substring(0, 4);
-            const month = date.substring(5, 7);
-            let date_to, date_from = date + "-01";
+            // #3 GET THE START, END DATES FROM THE FILE TITLE
+            const date = srcFilename.substring(0,7).replace("_", "-");  // ex. 2022-01
+            const year = date.substring(0, 4);  // ex. 2022
+            const month = date.substring(5, 7); // ex. 01
+            let date_from = date + "-01";
+            let date_to = calc_end_date(month, year);
 
-            if (month == "12")
-                date_to = (parseInt(year) + 1).toString() + "-01-01"
-            else if (parseInt(month) >= 9)
-                date_to = year + "-" + (parseInt(month) + 1).toString() + "-01"
-            else
-                date_to = year + "-0" + (parseInt(month) + 1).toString() + "-01"
-
+            // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.physical_flows.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
             await db.sequelize.query("COPY physical_flows(date_time,resolution_code,out_area_code,out_area_type_code,out_area_name,out_map_code,in_area_code,in_area_type_code,in_area_name,in_map_code,flow_value,update_time) FROM :file DELIMITER '\t' CSV HEADER;", 
@@ -89,14 +105,17 @@ const consume = async () => {
                 type: QueryTypes.COPY
             });
 
+            // #5 DELETE THE ZIP FILES
             fs.unlink(destFilenameZip, () => {console.log(srcFilenameZip, ' deleted');});	
             fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
 
+            // #6 NOTIFY THE API FOR NEW DATA IMPORT
             await produce('{ "StartDate" : "' + date_from + '", "EndDate" : "' + date_to + '"}');
         },
     })
 }
 
+// CONTINUOUSLY RUN THE CONSUMER (FOR PARSER MESSAGES)
 try {
     consume();
 }
