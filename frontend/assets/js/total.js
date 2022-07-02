@@ -2,7 +2,7 @@ var api_domain = 'http://localhost:9103';
 
 var countryCode = '';
 var startDate = '20220101';
-var endDate = '20220102';
+var endDate = '20220103';
 
 $('#total-countries-list').val(countryCode);
 $('#total-start-date').val(startDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
@@ -42,14 +42,34 @@ function atApiCall() {
   var source = new EventSource(`${api_domain}/total/api/stream/${countryCode}/${startDate}/${endDate}`);
   source.onmessage = function(event) {
     var parsedData = JSON.parse(event.data);
+    // console.log(parsedData);
     let dataList = parsedData['Data'];
+    console.log(parsedData['Data']);
     console.log('Data size : ' + dataList.length);
     if (dataList.length == 0) {
       window.alert('! No data for ' + countriesList[countryCode]);
     }
     dataList.sort(comparator);
     let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.total_load_value)]);
+    console.log(chartData);
+
+    let hourDict = {
+      "0": [0,0], "1" : [0, 0], "2" : [0, 0], "3" : [0, 0], "4" : [0, 0], "5" : [0, 0], "6" : [0, 0], "7": [0,0], "8" : [0, 0], "9" : [0, 0], "10" : [0, 0], "11" : [0, 0], "12" : [0, 0], "13" : [0, 0], "14": [0,0], "15" : [0, 0], "16" : [0, 0], "17" : [0, 0], "18" : [0, 0], "19" : [0, 0], "20" : [0, 0], "21": [0,0], "22" : [0, 0], "23" : [0, 0]
+    }
+    
+    for (let i = 0; i < dataList.length; i++) {
+      let temphour = new Date(dataList[i].date_time).getHours(); 
+      hourDict[temphour][0] += parseFloat(dataList[i].total_load_value);
+      hourDict[temphour][1]++;
+    }
+    
+    let hourArr = [];     
+    for (let j = 0; j < Object.keys(hourDict).length; j++) {
+      hourArr.push(parseFloat((hourDict[j][0]/hourDict[j][1]).toFixed(2)));
+    }
+
     drawChart(chartData, 'main-chart-total'); 
+    drawSideChart(hourArr, 'side-chart-total');
   };
 
   return source;
@@ -129,7 +149,80 @@ Highcharts.theme = {
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
 
+function drawSideChart(inputData, chart_id) {
+  Highcharts.chart(chart_id, {
+    chart: {
+      zoomType: 'x'
+    },
+    title: {
+      text: 'Total Consumption over Hour'
+    },
+    subtitle: {
+      text: (countryCode == '' ? '' : countriesList[countryCode]), 
+      align: 'right',
+      verticalAlign: 'bottom'
+    },
+    yAxis: {
+      title: {
+        text: 'Consumption (Joules)'
+      },
+    },
+    xAxis: {
+      title: {
+          text: 'Hours'
+      }
+    },
+    legend: {
+      enabled: false
+    }, 
+    plotOptions: {
+      area: {
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      }
+    },
+    series: [{
+      type: 'bar',
+      name: 'Consumption',
+      data: inputData
+  }]
+
+  })
+};
+
+Highcharts.theme = {
+  colors: [
+      '#F7BF4F',
+  ],
+  title: {
+      style: {
+          color: '#adaec1',
+      }
+  },
+  xAxis: {
+      lineColor: '#242424'
+  },
+  yAxis: {
+      gridLineColor: '#242424'
+  },
+  chart: {
+      backgroundColor: '#333333',
+      borderColor: '#242424'
+  },
+};
+// Apply the theme
+Highcharts.setOptions(Highcharts.theme); 
+
 drawChart([], 'main-chart-total'); 
+drawSideChart([], 'side-chart-total');
 
 var countriesList = {
 	"AL": "Albania",

@@ -53,7 +53,24 @@ function atApiCall() {
     }
     dataList.sort(comparator);
     let chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.flow_value)]);
+    console.log(dataList);
+    let hourDict = {
+      "0": [0,0], "1" : [0, 0], "2" : [0, 0], "3" : [0, 0], "4" : [0, 0], "5" : [0, 0], "6" : [0, 0], "7": [0,0], "8" : [0, 0], "9" : [0, 0], "10" : [0, 0], "11" : [0, 0], "12" : [0, 0], "13" : [0, 0], "14": [0,0], "15" : [0, 0], "16" : [0, 0], "17" : [0, 0], "18" : [0, 0], "19" : [0, 0], "20" : [0, 0], "21": [0,0], "22" : [0, 0], "23" : [0, 0]
+    }
+    
+    for (let i = 0; i < dataList.length; i++) {
+      let temphour = new Date(dataList[i].date_time).getHours(); 
+      hourDict[temphour][0] += parseFloat(dataList[i].flow_value);
+      hourDict[temphour][1]++;
+    }
+    
+    let hourArr = [];     
+    for (let j = 0; j < Object.keys(hourDict).length; j++) {
+      hourArr.push(parseFloat((hourDict[j][0]/hourDict[j][1]).toFixed(2)));
+    }
+
     drawChart(chartData, 'main-chart-flows'); 
+    drawSideChart(hourArr, 'side-chart-flows');
   };
 
   return source;
@@ -133,7 +150,57 @@ Highcharts.theme = {
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
 
+function drawSideChart(inputData, chart_id) {
+  Highcharts.chart(chart_id, {
+    chart: {
+      zoomType: 'x'
+    },
+    title: {
+      text: 'Physical Energy Flows in Hours'
+    },
+    subtitle: {
+      text: (countryCodeFrom == '' ? '' : countriesList[countryCodeFrom] +' &#x2192 ') + (countryCodeTo == '' ? '' : countriesList[countryCodeTo]) ,
+      align: 'right',
+      verticalAlign: 'bottom'
+    },
+    yAxis: {
+      title: {
+        text: 'Consumption (Joules)'
+      },
+    },
+    xAxis: {
+      title: {
+          text: 'Hours'
+      }
+    },
+    legend: {
+      enabled: false
+    }, 
+    plotOptions: {
+      area: {
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      }
+    },
+    series: [{
+      type: 'bar',
+      name: 'Consumption',
+      data: inputData
+  }]
+
+  })
+};
+
 drawChart([], 'main-chart-flows'); 
+drawSideChart([], 'side-chart-flows');
 
 var countriesList = {
 	"AL": "Albania",

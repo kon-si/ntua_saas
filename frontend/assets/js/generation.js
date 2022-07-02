@@ -4,6 +4,10 @@ var countryCode = '';
 var prodType = ''
 var startDate = '20220101';
 var endDate = '20220103';
+var hourDict = {
+  "0": [0,0], "1" : [0, 0], "2" : [0, 0], "3" : [0, 0], "4" : [0, 0], "5" : [0, 0], "6" : [0, 0], "7": [0,0], "8" : [0, 0], "9" : [0, 0], "10" : [0, 0], "11" : [0, 0], "12" : [0, 0], "13" : [0, 0], "14": [0,0], "15" : [0, 0], "16" : [0, 0], "17" : [0, 0], "18" : [0, 0], "19" : [0, 0], "20" : [0, 0], "21": [0,0], "22" : [0, 0], "23" : [0, 0]
+}
+
 
 $('#generation-countries-list').val(countryCode);
 $('#production-types-list').val(prodType);
@@ -32,7 +36,6 @@ $('.reload-data-btn').on('click', function() {
 });
 
 function atApiCall() {
-
   countryCode = $('#generation-countries-list').val();
   prodType = $('#production-types-list').val();
   if (countryCode == '') {
@@ -57,11 +60,26 @@ function atApiCall() {
     }
     dataList.sort(comparator);
     chartData = dataList.map(a => [new Date(a.date_time).getTime(), parseFloat(a.actual_generation_output)]);
+    
+    for (let i = 0; i < dataList.length; i++) {
+      let temphour = new Date(dataList[i].date_time).getHours(); 
+      hourDict[temphour][0] += parseFloat(dataList[i].actual_generation_output);
+      hourDict[temphour][1]++;
+    }
+    let hourArr = []; 
+    for (let j = 0; j < Object.keys(hourDict).length; j++) {
+      hourArr.push(parseFloat((hourDict[j][0]/hourDict[j][1]).toFixed(2)));
+    }
+    // console.log(chartData);
+    // console.log(hourArr);
+
     drawChart(chartData, 'main-chart-generation'); 
+    drawSideChart(hourArr, 'side-chart-generation');
   };
 
   return source;
 }
+
 
 function comparator(a,b) {
   return (new Date(a.date_time) - new Date(b.date_time));
@@ -137,7 +155,80 @@ Highcharts.theme = {
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
 
+function drawSideChart(inputData, chart_id) {
+  Highcharts.chart(chart_id, {
+    chart: {
+      zoomType: 'x'
+    },
+    title: {
+      text: 'Energy Generation in Hours' 
+    },
+    subtitle: {
+      text: (countryCode == '' ? '' : countriesList[countryCode]) +' '+ (prodType == '' ? '' : '('+productionTypesList[prodType]+')'),
+      align: 'right',
+      verticalAlign: 'bottom'
+    },
+    xAxis: {
+      title: {
+        text: 'Hours'
+      }
+    },
+    yAxis: {
+      title: {
+          text: 'Consumption (Joules)'
+      }
+    },
+    legend: {
+      enabled: false
+    }, 
+    plotOptions: {
+      area: {
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      }
+    },
+    series: [{
+      type: 'bar',
+      name: 'Generation',
+      data: inputData
+  }]
+
+  })
+};
+
+Highcharts.theme = {
+  colors: [
+      '#F7BF4F',
+  ],
+  title: {
+      style: {
+          color: '#adaec1',
+      }
+  },
+  xAxis: {
+      lineColor: '#242424'
+  },
+  yAxis: {
+      gridLineColor: '#242424'
+  },
+  chart: {
+      backgroundColor: '#333333',
+      borderColor: '#242424'
+  },
+};
+
+Highcharts.setOptions(Highcharts.theme); 
+
 drawChart([], 'main-chart-generation'); 
+drawSideChart([], 'side-chart-generation');
 
 var countriesList = {
 	"AL": "Albania",
@@ -236,4 +327,3 @@ function setDate() {
   var today = dayOfWeek + ", " + dayOfMonth + " of " + curMonth + " " + curYear;
   $('.current-date').html(today.toString());
 }
-
