@@ -28,6 +28,7 @@ app.use(baseurl + "/resetflows", require("./admin/resetflows"));
 // Functional endpoints.
 app.use(baseurl + "/data", require("./functional/data"));
 app.use(baseurl + "/stream", require("./functional/stream"));
+app.use(baseurl + "/parser", require("./functional/parser"));
 
 process.on('SIGINT', function() {
     console.log("\nFlows API server shuting down.");
