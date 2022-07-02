@@ -27,6 +27,27 @@ const consumer = kafka.consumer({ // NEW CONSUMER
     groupId: clientId,
 })
 
+const producer = kafka.producer(); // NEW PRODUCER
+
+async function produce (myMessage) {
+	await producer.connect();
+	try {
+		await producer.send({ // ADD MESSAGE TO THE LIST
+			topic: 'generation',
+			messages: [
+				{ 
+                    key: String(1),
+                    value: myMessage 
+                },
+			],
+		})
+	} catch (err) {
+		console.error('could not write message ' + err)
+	}
+    
+    producer.disconnect();
+}
+
 const consume = async () => {
     await db.checkConnection();
     await consumer.connect();
@@ -70,6 +91,8 @@ const consume = async () => {
 
             fs.unlink(destFilenameZip, () => {console.log(srcFilenameZip, ' deleted');});	
             fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
+
+            await produce('{ "StartDate" : "' + date_from + '", "EndDate" : "' + date_to + '"}');
         },
     })
 }
