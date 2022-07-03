@@ -132,36 +132,13 @@ function drawChart(inputData, chart_id) {
   })
 };
 
-Highcharts.theme = {
-  colors: [
-      '#F7BF4F',
-  ],
-  title: {
-      style: {
-          color: '#adaec1',
-      }
-  },
-  xAxis: {
-      lineColor: '#242424'
-  },
-  yAxis: {
-      gridLineColor: '#242424'
-  },
-  chart: {
-      backgroundColor: '#333333',
-      borderColor: '#242424'
-  },
-};
-// Apply the theme
-Highcharts.setOptions(Highcharts.theme); 
-
 function drawSideChart(inputData, chart_id) {
   Highcharts.chart(chart_id, {
     chart: {
       zoomType: 'x'
     },
     title: {
-      text: 'Energy Generation in Hours' 
+      text: 'Median Energy Generation' 
     },
     subtitle: {
       text: (countryCode == '' ? '' : countriesList[countryCode]) +' '+ (prodType == '' ? '' : '('+productionTypesList[prodType]+')'),
@@ -170,7 +147,7 @@ function drawSideChart(inputData, chart_id) {
     },
     xAxis: {
       title: {
-        text: 'Hours'
+        text: 'Time (Hours)'
       }
     },
     yAxis: {
@@ -193,6 +170,9 @@ function drawSideChart(inputData, chart_id) {
           }
         },
         threshold: null
+      },
+      series: {
+        borderColor: '#f7bf4f'
       }
     },
     series: [{
