@@ -127,6 +127,58 @@ function drawChart(inputData, chart_id) {
   })
 };
 
+function drawSideChart(inputData, chart_id) {
+  Highcharts.chart(chart_id, {
+    chart: {
+      zoomType: 'x'
+    },
+    title: {
+      text: 'Median Physical Energy Flow'
+    },
+    subtitle: {
+      text: (countryCodeFrom == '' ? '' : countriesList[countryCodeFrom] +' &#x2192 ') + (countryCodeTo == '' ? '' : countriesList[countryCodeTo]) ,
+      align: 'right',
+      verticalAlign: 'bottom'
+    },
+    yAxis: {
+      title: {
+        text: 'Consumption (Joules)'
+      },
+    },
+    xAxis: {
+      title: {
+          text: 'Time (Hours)'
+      }
+    },
+    legend: {
+      enabled: false
+    }, 
+    plotOptions: {
+      area: {
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      },
+      series: {
+        borderColor: '#f7bf4f'
+      }
+    },
+    series: [{
+      type: 'bar',
+      name: 'Consumption',
+      data: inputData
+  }]
+
+  })
+};
+
 Highcharts.theme = {
   colors: [
       '#F7BF4F',
@@ -149,55 +201,6 @@ Highcharts.theme = {
 };
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme); 
-
-function drawSideChart(inputData, chart_id) {
-  Highcharts.chart(chart_id, {
-    chart: {
-      zoomType: 'x'
-    },
-    title: {
-      text: 'Physical Energy Flows in Hours'
-    },
-    subtitle: {
-      text: (countryCodeFrom == '' ? '' : countriesList[countryCodeFrom] +' &#x2192 ') + (countryCodeTo == '' ? '' : countriesList[countryCodeTo]) ,
-      align: 'right',
-      verticalAlign: 'bottom'
-    },
-    yAxis: {
-      title: {
-        text: 'Consumption (Joules)'
-      },
-    },
-    xAxis: {
-      title: {
-          text: 'Hours'
-      }
-    },
-    legend: {
-      enabled: false
-    }, 
-    plotOptions: {
-      area: {
-        marker: {
-          radius: 2
-        },
-        lineWidth: 1,
-        states: {
-          hover: {
-            lineWidth: 1
-          }
-        },
-        threshold: null
-      }
-    },
-    series: [{
-      type: 'bar',
-      name: 'Consumption',
-      data: inputData
-  }]
-
-  })
-};
 
 drawChart([], 'main-chart-flows'); 
 drawSideChart([], 'side-chart-flows');
