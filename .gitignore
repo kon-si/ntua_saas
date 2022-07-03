@@ -42,52 +42,52 @@ frontend/bundles/package-lock.json
 # Authentication Microservice
 /microservice-authentication/node_modules
 /microservice-authentication/package-lock.json
-#/microservice-authentication/.env
+/microservice-authentication/.env
 
 # Flows API Microservice
 /microservice-api-flows/node_modules
 /microservice-api-flows/package-lock.json
-#/microservice-api-flows/.env
+/microservice-api-flows/.env
 
 # Flows Parser Microservice
 /microservice-parser-flows/saas-2022-bc1a910f9c03.json
-#/microservice-parser-flows/config.ini
+/microservice-parser-flows/config.ini
 
 # Flows Importer Microservice
 /microservice-importer-flows/node_modules
 /microservice-importer-flows/package-lock.json
 /microservice-importer-flows/saas-2022-bc1a910f9c03.json
-#/microservice-importer-flows/.env
+/microservice-importer-flows/.env
 
 # Total API Microservice
 /microservice-api-total/node_modules
 /microservice-api-total/package-lock.json
-#/microservice-api-total/.env
+/microservice-api-total/.env
 
 # Total Parser Microservice
 /microservice-parser-total/saas-2022-bc1a910f9c03.json
-#/microservice-parser-total/config.ini
+/microservice-parser-total/config.ini
 
 # Total Importer Microservice
 /microservice-importer-total/node_modules
 /microservice-importer-total/package-lock.json
 /microservice-importer-total/saas-2022-bc1a910f9c03.json
-#/microservice-importer-total/.env
+/microservice-importer-total/.env
 
 # Generation API Microservice
 /microservice-api-generation/node_modules
 /microservice-api-generation/package-lock.json
-#/microservice-api-generation/.env
+/microservice-api-generation/.env
 
 # Generation Parser Microservice
 /microservice-parser-generation/saas-2022-bc1a910f9c03.json
-#/microservice-parser-generation/config.ini
+/microservice-parser-generation/config.ini
 
 # Generation Importer Microservice
 /microservice-importer-generation/node_modules
 /microservice-importer-generation/package-lock.json
 /microservice-importer-generation/saas-2022-bc1a910f9c03.json
-#/microservice-importer-generation/.env
+/microservice-importer-generation/.env
 
 
 /microservice05/config.ini

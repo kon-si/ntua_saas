@@ -15,7 +15,7 @@ const kafka = new Kafka({
 		password: process.env.KAFKA_PASSWORD
 	},
 	connectionTimeout: process.env.KAFKA_TIMEOUT,
-	requestTimeout: process.env.KAFKA_TIMEOUT
+	requestTimeout: parseInt(process.env.KAFKA_TIMEOUT)
 });
 
 module.exports = { kafka, clientId };
