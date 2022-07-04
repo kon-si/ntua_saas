@@ -10,3 +10,6 @@
 - TestTotal.jmx :stress test στο microservice-api-total, δέχεται παραμέτρους από το .csv test1.csv
 - TestFlows.jmx :stress test στο microservice-api-flows, δέχεται παραμέτρους από το .csv test2.csv
 - TestGeneration.jmx :stress test στο microservice-api-generation, δέχεται παραμέτρους από το .csv test3.csv
+
+Κατά την εκτέλεση του κάθε επιμέρους test δημιουργείται, εφόσον δεν υπάρχει ήδη, φάκελος με τίτλο την ημερομηνία της ημέρας εκτέλσης και μέσα δημιουργείται ένα αρχείο .jtl με τα αποτελέσματα της εκτέλεσης του test και τίτλο που προκύπτει από την ώρα της αρχής της εκτέλεσης.
+
