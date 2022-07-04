@@ -11,12 +11,24 @@
 - TestFlows.jmx :stress test στο microservice-api-flows, δέχεται παραμέτρους από το .csv test2.csv
 - TestGeneration.jmx :stress test στο microservice-api-generation, δέχεται παραμέτρους από το .csv test3.csv
 
+Παρατίθενται ακόμα, στον υποφάκελο test-results, 4 .txt αρχεία στα οποία φαίνονται τα αποτελέσματα που εμφανίζονται στο terminal κατά την εκτέλεση stress test με 2000 χρήστες να τελούν αλλεπάλληλα requests στο api endpoint που αφορά το test κάθε φορά.
+Στα test-results υπάρχει ακόμα ο φάκελος diagrams στον οποίο δίνονται 3 ενδεικτικά .jtl αρχεία από τα οποία προκύπτουν τα διαγράμματα που εμφανίζονται παρακάτω και ένα .jmx αρχείο με το Test Plan που περιέχει τους Listeners που χρησιμοποιήθηκαν για την παραγωγή των διαγραμμάτων/πινάκων.
+
 Κατά την εκτέλεση του κάθε επιμέρους test δημιουργείται, εφόσον δεν υπάρχει ήδη, φάκελος με τίτλο την ημερομηνία της ημέρας εκτέλσης και μέσα δημιουργείται ένα αρχείο .jtl με τα αποτελέσματα της εκτέλεσης του test και τίτλο που προκύπτει από την ώρα της αρχής της εκτέλεσης.
 
 Για να τρέξουν σωστά τα test θα πρέπει να βρίσκονται μέσα στον φάκελο bin που βρίσκεται και το jmeter.bat .
 
-Παρατίθενται ακόμα, στον υποφάκελο test-results, 4 .txt αρχεία στα οποία φαίνονται τα αποτελέσματα της τέλεσης stress test με 2000 χρήστες να τελούν αλλεπάλληλα requests στο api endpoint που αφορά το test κάθε φορά.
-Στα test-results δίνονται ακόμα 3 ενδεικτικά .jtl αρχεία από τα οποία προκύπτουν τα διαγράμματα που εμφανίζονται παρακάτω.
+## Microservice-Api-Total
+### Διάγραμμα Active Threads Over Time:
+### Aggragate Report:
+### Διάγραμμα Response Times Over Time:
+
+
+## Microservice-Api-Flows
+### Διάγραμμα Active Threads Over Time:
+### Aggragate Report:
+### Διάγραμμα Response Times Over Time:
+
 
 ## Microservice-Api-Generation
 ### Διάγραμμα Active Threads Over Time
