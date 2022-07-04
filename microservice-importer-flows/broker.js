@@ -9,12 +9,12 @@ const kafka = new Kafka({
 	clientId: clientId,
 	brokers: [process.env.KAFKA_BROKER],
 	// FOR CONFLUENT
-	// ssl: true,
-	// sasl: {
-	// 	mechanism: 'plain',
-	// 	username: process.env.KAFKA_USERNAME,
-	// 	password: process.env.KAFKA_PASSWORD
-	// },
+	ssl: true,
+	sasl: {
+		mechanism: 'plain',
+		username: process.env.KAFKA_USERNAME,
+		password: process.env.KAFKA_PASSWORD
+	},
 	connectionTimeout: process.env.KAFKA_TIMEOUT,
 	requestTimeout: parseInt(process.env.KAFKA_TIMEOUT)
 });
