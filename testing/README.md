@@ -11,6 +11,34 @@
 - TestFlows.jmx :stress test στο microservice-api-flows, δέχεται παραμέτρους από το .csv test2.csv
 - TestGeneration.jmx :stress test στο microservice-api-generation, δέχεται παραμέτρους από το .csv test3.csv
 
+Παρατίθενται ακόμα, στον υποφάκελο test-results, 4 .txt αρχεία στα οποία φαίνονται τα αποτελέσματα που εμφανίζονται στο terminal κατά την εκτέλεση stress test με 2000 χρήστες να τελούν αλλεπάλληλα requests στο api endpoint που αφορά το test κάθε φορά.
+Στα test-results υπάρχει ακόμα ο φάκελος diagrams στον οποίο δίνονται 3 ενδεικτικά .jtl αρχεία από τα οποία προκύπτουν τα διαγράμματα που εμφανίζονται παρακάτω και ένα .jmx αρχείο με το Test Plan που περιέχει τους Listeners που χρησιμοποιήθηκαν για την παραγωγή των διαγραμμάτων/πινάκων.
+
 Κατά την εκτέλεση του κάθε επιμέρους test δημιουργείται, εφόσον δεν υπάρχει ήδη, φάκελος με τίτλο την ημερομηνία της ημέρας εκτέλσης και μέσα δημιουργείται ένα αρχείο .jtl με τα αποτελέσματα της εκτέλεσης του test και τίτλο που προκύπτει από την ώρα της αρχής της εκτέλεσης.
 
 Για να τρέξουν σωστά τα test θα πρέπει να βρίσκονται μέσα στον φάκελο bin που βρίσκεται και το jmeter.bat .
+
+## Microservice-Api-Total
+### Διάγραμμα Active Threads Over Time:
+### Aggragate Report:
+### Διάγραμμα Response Times Over Time:
+
+
+## Microservice-Api-Flows
+### Διάγραμμα Active Threads Over Time:
+### Aggragate Report:
+### Διάγραμμα Response Times Over Time:
+
+
+## Microservice-Api-Generation
+### Διάγραμμα Active Threads Over Time
+![image](https://user-images.githubusercontent.com/94255085/177208766-a769f682-d00c-4688-a97c-f9562fad0a38.png)
+
+
+### Aggragate Report:
+![image](https://user-images.githubusercontent.com/94255085/177208347-d7a2a800-d9d2-4971-9cb6-98a7080bf021.png)
+![image](https://user-images.githubusercontent.com/94255085/177208457-8b45378f-bdcd-4f5c-8837-098d9624c0a2.png)
+
+### Διάγραμμα Response Times Over Time:
+![image](https://user-images.githubusercontent.com/94255085/177208610-afb89c61-da0e-46c4-9ebb-28102e9e1d7c.png)
+
