@@ -17,7 +17,14 @@
 
 Παρατίθενται ακόμα, στον υποφάκελο test-results, 4 .txt αρχεία στα οποία φαίνονται τα αποτελέσματα της τέλεσης stress test με 2000 χρήστες να τελούν αλλεπάλληλα requests στο api endpoint που αφορά το test κάθε φορά.
 
-Παρακάτω φαίνεται το Aggragate Report για το Stress Test στο Microservice-Api-Generation:
+### Διάγραμμα Active Threads Over Time
+![image](https://user-images.githubusercontent.com/94255085/177208766-a769f682-d00c-4688-a97c-f9562fad0a38.png)
+
+
+### Παρακάτω φαίνεται το Aggragate Report για το Stress Test στο Microservice-Api-Generation:
 ![image](https://user-images.githubusercontent.com/94255085/177208347-d7a2a800-d9d2-4971-9cb6-98a7080bf021.png)
 ![image](https://user-images.githubusercontent.com/94255085/177208457-8b45378f-bdcd-4f5c-8837-098d9624c0a2.png)
+
+### Διάγραμμα Response Times Over Time για το Stress Test στο Microservice-Api-Generation:
+![image](https://user-images.githubusercontent.com/94255085/177208610-afb89c61-da0e-46c4-9ebb-28102e9e1d7c.png)
 
