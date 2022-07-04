@@ -47,11 +47,15 @@ def list_dir_files(dirName):
             all_files.append(full_path)
     return all_files
 
+csv_headers = ['date_time', 'resolution_code', 'out_area_code', 'out_area_type_code', 'out_area_name', 'out_map_code', 'in_area_code', 'in_area_type_code', 'in_area_name', 'in_map_code', 'flow_value', 'update_time']
+
 def parse_file(file_path):
     reader = csv.reader(open(file_path), delimiter='\t')
     filtered = filter(lambda p: 'CTY' == p[3], reader)
     new_path_file = os.path.join(dir_path, "import_files", os.path.basename(file_path))
-    csv.writer(open(new_path_file, 'w', newline=''), delimiter='\t').writerows(filtered)
+    new_writer = csv.writer(open(new_path_file, 'w', newline=''), delimiter='\t')
+    new_writer.writerow(csv_headers)
+    new_writer.writerows(filtered)
     print ("Parsed " + os.path.basename(file_path))
 
 # Kafka consumer
