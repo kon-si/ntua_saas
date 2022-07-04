@@ -1,5 +1,5 @@
-var api_domain = 'http://localhost:9102';
-// var api_domain = 'https://api-flows-image-47nenum5kq-ew.a.run.app';
+// var api_domain = 'http://localhost:9102';
+var api_domain = 'https://api-flows-image-47nenum5kq-ew.a.run.app';
 
 var countryCodeFrom = '';
 var countryCodeTo = '';

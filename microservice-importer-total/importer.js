@@ -110,7 +110,7 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.actual_total.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            await csvtojson({delimiter:["\t"]}).fromFile(destFilename)
             .then(data => {
                 db.actual_total.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
             }).catch(err => {

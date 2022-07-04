@@ -1,5 +1,5 @@
-var api_domain = 'http://localhost:9104';
-// var api_domain = 'https://api-generation-image-47nenum5kq-ew.a.run.app';
+// var api_domain = 'http://localhost:9104';
+var api_domain = 'https://api-generation-image-47nenum5kq-ew.a.run.app';
 
 var countryCode = '';
 var prodType = ''

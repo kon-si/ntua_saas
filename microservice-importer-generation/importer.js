@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const server = http.createServer(app);
 const AdmZip = require("adm-zip");
+const csvtojson = require('csvtojson');
 const db = require("./config/database");
 const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
@@ -109,9 +110,9 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.aggregated_generation.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            await csvtojson({delimiter:["\t"]}).fromFile(destFilename)
             .then(data => {
-                db.actual_total.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
+                db.aggregated_generation.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
             }).catch(err => {
                 console.log(err);
             });
