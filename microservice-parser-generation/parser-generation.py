@@ -4,12 +4,22 @@ import csv
 from confluent_kafka import Producer, Consumer, KafkaException
 from google.cloud import storage
 import configparser
-from flask import Flask
-
-app = Flask(__name__)
-
-if __name__ == "__main__":
-    app.run(host="localhost", port= 9110, debug = True)
+import socket
+import sys
+ 
+HOST = '' 
+PORT = 9110 
+ 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+try:
+    s.bind((HOST, PORT))
+    
+except socket.error as msg:
+    print('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
+    sys.exit()
+	
+print('Socket bind complete')
+s.listen()
 
 # PARAMETERS
 config_path = './config.ini'
