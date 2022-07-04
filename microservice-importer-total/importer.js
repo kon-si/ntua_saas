@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const server = http.createServer(app);
 const AdmZip = require("adm-zip");
+const csvtojson = require('csvtojson');
 const db = require("./config/database");
 const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
@@ -109,10 +110,11 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.actual_total.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            await db.sequelize.query("COPY actual_total(date_time,resolution_code,area_code,area_type_code,area_name,map_code,total_load_value,update_time) FROM :file DELIMITER '\t' CSV HEADER;", 
-            {
-                replacements: { file: destFilename },
-                type: QueryTypes.COPY
+            csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            .then(data => {
+                db.actual_total.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
+            }).catch(err => {
+                console.log(err);
             });
 
             // #5 DELETE THE ZIP FILES

@@ -109,12 +109,13 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.physical_flows.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            await db.sequelize.query("COPY physical_flows(date_time,resolution_code,out_area_code,out_area_type_code,out_area_name,out_map_code,in_area_code,in_area_type_code,in_area_name,in_map_code,flow_value,update_time) FROM :file DELIMITER '\t' CSV HEADER;", 
-            {
-                replacements: { file: destFilename },
-                type: QueryTypes.COPY
+            csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            .then(data => {
+                db.actual_total.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
+            }).catch(err => {
+                console.log(err);
             });
-
+            
             // #5 DELETE THE ZIP FILES
             fs.unlink(destFilenameZip, () => {console.log(srcFilenameZip, ' deleted');});	
             fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
