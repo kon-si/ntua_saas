@@ -20,8 +20,15 @@
 
 ## Microservice-Api-Total
 ### Διάγραμμα Active Threads Over Time:
+![image](https://user-images.githubusercontent.com/94255085/177210010-5d52cb19-2109-4dca-89e6-316934efa57d.png)
+
 ### Aggragate Report:
+![image](https://user-images.githubusercontent.com/94255085/177210036-6d5abcaf-ca37-4535-9767-22a397887c6e.png)
+![image](https://user-images.githubusercontent.com/94255085/177210057-1bf17102-3242-471a-b145-04edf34f5745.png)
+
 ### Διάγραμμα Response Times Over Time:
+![image](https://user-images.githubusercontent.com/94255085/177210097-6db48de8-7407-491c-bc3f-7354198081b0.png)
+
 
 
 ## Microservice-Api-Flows
