@@ -4,6 +4,12 @@ import csv
 from confluent_kafka import Producer, Consumer, KafkaException
 from google.cloud import storage
 import configparser
+from flask import Flask
+
+app = Flask(__name__)
+
+if __name__ == "__main__":
+    app.run(host="localhost", port= 9109, debug = True)
 
 # PARAMETERS
 config_path = './config.ini'

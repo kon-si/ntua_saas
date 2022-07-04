@@ -1,0 +1,39 @@
+Creating summariser <summary>
+Created the tree successfully using TestTotal.jmx
+Starting standalone test @ Mon Jul 04 13:04:48 EEST 2022 (1656929088302)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +    509 in 00:00:12 =   43.8/s Avg:  1796 Min:   356 Max:  3443 Err:     0 (0.00%) Active: 229 Started: 229 Finished: 0
+summary +   1379 in 00:00:30 =   46.0/s Avg:  8242 Min:  3370 Max: 11952 Err:     0 (0.00%) Active: 831 Started: 831 Finished: 0
+summary =   1888 in 00:00:42 =   45.4/s Avg:  6504 Min:   356 Max: 11952 Err:     0 (0.00%)
+summary +   1522 in 00:00:30 =   50.7/s Avg: 16062 Min: 11829 Max: 20388 Err:     0 (0.00%) Active: 1432 Started: 1432 Finished: 0
+summary =   3410 in 00:01:12 =   47.6/s Avg: 10770 Min:   356 Max: 20388 Err:     0 (0.00%)
+summary +   1525 in 00:00:30 =   50.8/s Avg: 24443 Min: 20272 Max: 28694 Err:     0 (0.00%) Active: 2033 Started: 2033 Finished: 0
+summary =   4935 in 00:01:42 =   48.6/s Avg: 14995 Min:   356 Max: 28694 Err:     0 (0.00%)
+summary +   1551 in 00:00:30 =   51.7/s Avg: 32804 Min: 28615 Max: 36812 Err:     0 (0.00%) Active: 2631 Started: 2631 Finished: 0
+summary =   6486 in 00:02:12 =   49.3/s Avg: 19254 Min:   356 Max: 36812 Err:     0 (0.00%)
+summary +   1549 in 00:00:30 =   51.6/s Avg: 41012 Min: 36743 Max: 45206 Err:     0 (0.00%) Active: 3233 Started: 3233 Finished: 0
+summary =   8035 in 00:02:42 =   49.7/s Avg: 23449 Min:   356 Max: 45206 Err:     0 (0.00%)
+summary +   1541 in 00:00:30 =   51.4/s Avg: 49206 Min: 45072 Max: 53392 Err:     0 (0.00%) Active: 3833 Started: 3833 Finished: 0
+summary =   9576 in 00:03:12 =   50.0/s Avg: 27593 Min:   356 Max: 53392 Err:     0 (0.00%)
+summary +   1669 in 00:00:30 =   55.6/s Avg: 57479 Min: 53214 Max: 60606 Err:   133 (7.97%) Active: 4000 Started: 4000 Finished: 0
+summary =  11245 in 00:03:42 =   50.7/s Avg: 32029 Min:   356 Max: 60606 Err:   133 (1.18%)
+summary +   2145 in 00:00:30 =   71.5/s Avg: 60305 Min: 60081 Max: 60764 Err:  1042 (48.58%) Active: 4000 Started: 4000 Finished: 0
+summary =  13390 in 00:04:12 =   53.2/s Avg: 36559 Min:   356 Max: 60764 Err:  1175 (8.78%)
+summary +   1824 in 00:00:30 =   60.8/s Avg: 60257 Min: 59952 Max: 60910 Err:   460 (25.22%) Active: 4000 Started: 4000 Finished: 0
+summary =  15214 in 00:04:42 =   54.0/s Avg: 39400 Min:   356 Max: 60910 Err:  1635 (10.75%)
+summary +   2139 in 00:00:30 =   71.3/s Avg: 60467 Min: 60174 Max: 61215 Err:  1119 (52.31%) Active: 4000 Started: 4000 Finished: 0
+summary =  17353 in 00:05:12 =   55.7/s Avg: 41997 Min:   356 Max: 61215 Err:  2754 (15.87%)
+summary +   1827 in 00:00:30 =   60.9/s Avg: 60427 Min: 60175 Max: 61448 Err:   777 (42.53%) Active: 4000 Started: 4000 Finished: 0
+summary =  19180 in 00:05:42 =   56.1/s Avg: 43752 Min:   356 Max: 61448 Err:  3531 (18.41%)
+summary +   2143 in 00:00:30 =   71.5/s Avg: 60555 Min: 60209 Max: 61795 Err:  1275 (59.50%) Active: 4000 Started: 4000 Finished: 0
+summary =  21323 in 00:06:12 =   57.4/s Avg: 45441 Min:   356 Max: 61795 Err:  4806 (22.54%)
+summary +   1802 in 00:00:30 =   60.0/s Avg: 60504 Min: 60118 Max: 61851 Err:   673 (37.35%) Active: 4000 Started: 4000 Finished: 0
+summary =  23125 in 00:06:42 =   57.6/s Avg: 46615 Min:   356 Max: 61851 Err:  5479 (23.69%)
+summary +   2137 in 00:00:30 =   71.3/s Avg: 60623 Min: 60224 Max: 61750 Err:  1182 (55.31%) Active: 3256 Started: 4000 Finished: 744
+summary =  25262 in 00:07:12 =   58.5/s Avg: 47800 Min:   356 Max: 61851 Err:  6661 (26.37%)
+summary +   1846 in 00:00:30 =   61.6/s Avg: 60538 Min: 60169 Max: 61977 Err:   668 (36.19%) Active: 1410 Started: 4000 Finished: 2590
+summary =  27108 in 00:07:42 =   58.7/s Avg: 48667 Min:   356 Max: 61977 Err:  7329 (27.04%)
+summary +   1409 in 00:00:20 =   71.0/s Avg: 60635 Min: 60225 Max: 62176 Err:   719 (51.03%) Active: 0 Started: 4000 Finished: 4000
+summary =  28517 in 00:08:01 =   59.2/s Avg: 49259 Min:   356 Max: 62176 Err:  8048 (28.22%)
+Tidying up ...    @ Mon Jul 04 13:12:49 EEST 2022 (1656929569847)
+... end of run
