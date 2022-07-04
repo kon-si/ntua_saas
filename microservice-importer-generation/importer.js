@@ -109,10 +109,11 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.aggregated_generation.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            await db.sequelize.query("COPY aggregated_generation(date_time,resolution_code,area_code,area_type_code,area_name,map_code,production_type,actual_generation_output,actual_consumption,update_time) FROM :file DELIMITER '\t' CSV HEADER;", 
-            {
-                replacements: { file: destFilename },
-                type: QueryTypes.COPY
+            csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            .then(data => {
+                db.actual_total.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
+            }).catch(err => {
+                console.log(err);
             });
             
             // #5 DELETE THE ZIP FILES
