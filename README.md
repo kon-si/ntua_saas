@@ -12,7 +12,7 @@
 ### Diagrams
 | Component | Sequence | ER | Deployment
 | --- | --- | --- | --- |
-|![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Component-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Sequence-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/ER-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Deployment Diagram.png)
+|![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Component-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Sequence-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/ER-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Deployment-diagram.png) |
 
 περιγραφή - οδηγίες
   
