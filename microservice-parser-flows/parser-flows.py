@@ -37,8 +37,8 @@ def parse_file(file_path):
     reader = csv.reader(open(file_path), delimiter='\t')
     filtered = filter(lambda p: 'CTY' == p[3], reader)
     new_path_file = os.path.join(dir_path, "import_files", os.path.basename(file_path))
-    csv.writer(open(new_path_file, 'w'), delimiter='\t').writerows(filtered)
-    print ("Parsed " + file_path)
+    csv.writer(open(new_path_file, 'w', newline=''), delimiter='\t').writerows(filtered)
+    print ("Parsed " + os.path.basename(file_path))
 
 # Kafka consumer
 files_list = sorted(list_dir_files(os.path.join(dir_path, "parse_files")))
@@ -54,9 +54,11 @@ for message in consumer:
     parse_file(file_path)
 
     # Compress file
+    new_file_path = os.path.join(dir_path, "import_files", file_name)
     file_name_zip = file_name.replace(file_name[len(file_name) - 3:], "zip")
     with zipfile.ZipFile('./import_files/' + file_name_zip, 'w', zipfile.ZIP_DEFLATED) as zip:
-        zip.write(file_path, file_name)
+        # zip.write(file_path, file_name) --> # itsabug
+        zip.write(new_file_path, file_name) # zip.write(actual file path, path inside zip file
 
     # Upload file to bucket
     client = storage.Client.from_service_account_json('./saas-2022-bc1a910f9c03.json')

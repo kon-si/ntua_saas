@@ -1,11 +1,21 @@
 const path = require("path");
 const fs = require('fs');
+// const http = require("http");
+// const express = require("express");
+// const app = express();
+// const server = http.createServer(app);
 const AdmZip = require("adm-zip");
 const db = require("./config/database");
 const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
 const { kafka, clientId } = require('./broker');
 const {Storage} = require('@google-cloud/storage');
+
+// const port = 9105;
+// // server listening 
+// server.listen(port, () => {
+//     console.log(`Flows Importer server running on: http://localhost:${port}/`);
+// });
 
 const bucketName = 'flows-bucket';
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
@@ -71,7 +81,7 @@ const consume = async () => {
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'flows_importer',
-        fromBeginning: true
+        fromBeginning: false
     })
     consumer.run({ 
         eachMessage: async ({ message }) => {	// on new message from parser
@@ -82,7 +92,7 @@ const consume = async () => {
             const destFilename = __dirname + '/import_files/' + srcFilename;
 
             console.log("Downloading " + srcFilenameZip + " ...");
-            await downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
+            downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
 
             // #2 UNZIP THE ZIP FILE
             const zip = new AdmZip(destFilenameZip);
@@ -110,7 +120,8 @@ const consume = async () => {
             fs.unlink(destFilename, () => {console.log(srcFilename, ' deleted');});
 
             // #6 NOTIFY THE API FOR NEW DATA IMPORT
-            await produce('{ "StartDate" : "' + date_from + '", "EndDate" : "' + date_to + '"}');
+            console.log('Producing message ...');
+            produce('{ "StartDate" : "' + date_from + '", "EndDate" : "' + date_to + '"}');
         },
     })
 }

@@ -1,4 +1,5 @@
 var api_domain = 'http://localhost:9103';
+// var api_domain = 'https://api-total-image-47nenum5kq-ew.a.run.app';
 
 var countryCode = '';
 var startDate = '20220101';

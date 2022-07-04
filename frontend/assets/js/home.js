@@ -1,6 +1,7 @@
 import "./map"
 
-var api_domain = 'http://127.0.0.1:9101';
+// var api_domain = 'http://127.0.0.1:9101';
+var api_domain = 'https://api-authentication-image-47nenum5kq-ew.a.run.app';
 
 $(function() {
     // Sets Date format for Header

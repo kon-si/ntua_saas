@@ -8,12 +8,13 @@ const clientId = process.env.KAFKA_CLIENT; // it lets kafka know who produced th
 const kafka = new Kafka({
 	clientId: clientId,
 	brokers: [process.env.KAFKA_BROKER],
-	ssl: true,
-	sasl: {
-		mechanism: 'plain',
-		username: process.env.KAFKA_USERNAME,
-		password: process.env.KAFKA_PASSWORD
-	},
+	// FOR CONFLUENT
+	// ssl: true,
+	// sasl: {
+	// 	mechanism: 'plain',
+	// 	username: process.env.KAFKA_USERNAME,
+	// 	password: process.env.KAFKA_PASSWORD
+	// },
 	connectionTimeout: process.env.KAFKA_TIMEOUT,
 	requestTimeout: parseInt(process.env.KAFKA_TIMEOUT)
 });

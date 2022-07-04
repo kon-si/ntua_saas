@@ -5,7 +5,7 @@ const db = require("./config/database");
 const { Op } = require("sequelize");
 const { QueryTypes } = require('sequelize');
 const { kafka, clientId } = require('./broker');
-const {Storage} = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 
 const bucketName = 'total-bucket';
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
@@ -71,7 +71,7 @@ const consume = async () => {
     await consumer.connect();
     await consumer.subscribe({ 
         topic: 'total_importer',
-        fromBeginning: true
+        fromBeginning: false
     })
     consumer.run({
         eachMessage: async ({ message }) => {	// on new message from parser
@@ -82,7 +82,7 @@ const consume = async () => {
             const destFilename = __dirname + '/import_files/' + srcFilename;
 
             console.log("Downloading " + srcFilenameZip + " ...");
-            await downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
+            downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
 
             // #2 UNZIP THE ZIP FILE
             const zip = new AdmZip(destFilenameZip);
