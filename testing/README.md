@@ -18,6 +18,8 @@
 
 Για να τρέξουν σωστά τα test θα πρέπει να βρίσκονται μέσα στον φάκελο bin που βρίσκεται και το jmeter.bat .
 
+## Ενδεικτικά Αποτελέσματα Testing:
+
 ## Microservice-Api-Total
 ### Διάγραμμα Active Threads Over Time:
 ![image](https://user-images.githubusercontent.com/94255085/177210010-5d52cb19-2109-4dca-89e6-316934efa57d.png)
@@ -33,9 +35,15 @@
 
 ## Microservice-Api-Flows
 ### Διάγραμμα Active Threads Over Time:
-### Aggragate Report:
-### Διάγραμμα Response Times Over Time:
+![image](https://user-images.githubusercontent.com/94255085/177210797-c487474d-475a-42af-b9fb-c6ca179b4fee.png)
 
+
+### Aggragate Report:
+![image](https://user-images.githubusercontent.com/94255085/177210698-01926055-dd57-43ec-8e63-d84352a2f537.png)
+![image](https://user-images.githubusercontent.com/94255085/177210706-d9427aec-9225-4928-a26c-090313061bd9.png)
+
+### Διάγραμμα Response Times Over Time:
+![image](https://user-images.githubusercontent.com/94255085/177210680-db469494-cbdb-4755-8050-e84293080a25.png)
 
 ## Microservice-Api-Generation
 ### Διάγραμμα Active Threads Over Time
