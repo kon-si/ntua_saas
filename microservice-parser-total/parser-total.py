@@ -56,7 +56,7 @@ def parse_file(file_path):
 
 # Kafka consumer
 files_list = sorted(list_dir_files(os.path.join(dir_path, "parse_files")))
-consumer.subscribe(["total_parser"])
+consumer.subscribe([kafka_params["consumer_topic"]])
 
 while True:
     # Poll for new message
