@@ -10,10 +10,10 @@
 - [nikosece2019](https://github.com/nikosece2019)
   
 ### Diagrams
-| Component | Sequence | ER |
-| --- | --- | --- |
-|![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Component-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Sequence-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/ER-diagram.png) |
-  
+| Component | Sequence | ER | Deployment
+| --- | --- | --- | --- |
+|![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Component-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Sequence-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/ER-diagram.png) | ![](https://github.com/ntua/saas2022-20/blob/master/architecture/Diagrams/Photos/Deployment Diagram.png)
+
 περιγραφή - οδηγίες
   
 Περιέχονται φάκελοι για 15 microservices. Ο αριθμός είναι εντελώς ενδεικτικός. Δημιουργήστε ακριβώς όσα απαιτούνται από τη λύση σας.
