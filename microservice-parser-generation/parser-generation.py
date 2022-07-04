@@ -7,6 +7,7 @@ import configparser
 import socket
 import sys
  
+# FOR CLOUD RUN //////////////////
 HOST = '' 
 PORT = 9110 
  
@@ -20,6 +21,7 @@ except socket.error as msg:
 	
 print('Socket bind complete')
 s.listen()
+# ////////////////////
 
 # PARAMETERS
 config_path = './config.ini'
