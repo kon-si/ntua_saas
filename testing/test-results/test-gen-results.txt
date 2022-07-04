@@ -1,0 +1,23 @@
+Creating summariser <summary>
+Created the tree successfully using TestGeneration.jmx
+Starting standalone test @ Mon Jul 04 21:54:16 EEST 2022 (1656960856769)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +   3573 in 00:00:13 =  271.8/s Avg:   440 Min:    38 Max:   890 Err:     0 (0.00%) Active: 261 Started: 261 Finished: 0
+summary +   8795 in 00:00:30 =  293.2/s Avg:  1806 Min:   853 Max:  2549 Err:     0 (0.00%) Active: 863 Started: 863 Finished: 0
+summary =  12368 in 00:00:43 =  286.7/s Avg:  1411 Min:    38 Max:  2549 Err:     0 (0.00%)
+summary +   9110 in 00:00:30 =  303.7/s Avg:  3572 Min:  2538 Max:  4568 Err:     0 (0.00%) Active: 1463 Started: 1463 Finished: 0
+summary =  21478 in 00:01:13 =  293.6/s Avg:  2328 Min:    38 Max:  4568 Err:     0 (0.00%)
+summary +   7873 in 00:00:30 =  262.4/s Avg:  6342 Min:  4218 Max:  9662 Err:     2 (0.03%) Active: 2000 Started: 2000 Finished: 0
+summary =  29351 in 00:01:43 =  284.6/s Avg:  3404 Min:    38 Max:  9662 Err:     2 (0.01%)
+summary +   8337 in 00:00:30 =  277.9/s Avg:  7152 Min:  6197 Max:  9331 Err:     0 (0.00%) Active: 2000 Started: 2000 Finished: 0
+summary =  37688 in 00:02:13 =  283.1/s Avg:  4233 Min:    38 Max:  9662 Err:     2 (0.01%)
+summary +   8935 in 00:00:30 =  297.8/s Avg:  6762 Min:  6209 Max:  8078 Err:     0 (0.00%) Active: 2000 Started: 2000 Finished: 0
+summary =  46623 in 00:02:43 =  285.8/s Avg:  4718 Min:    38 Max:  9662 Err:     2 (0.00%)
+summary +   9483 in 00:00:30 =  316.1/s Avg:  6322 Min:  6194 Max:  6399 Err:     0 (0.00%) Active: 2000 Started: 2000 Finished: 0
+summary =  56106 in 00:03:13 =  290.5/s Avg:  4989 Min:    38 Max:  9662 Err:     2 (0.00%)
+summary +   9452 in 00:00:30 =  315.1/s Avg:  6366 Min:  6127 Max:  6621 Err:     0 (0.00%) Active: 1055 Started: 2000 Finished: 945
+summary =  65558 in 00:03:43 =  293.8/s Avg:  5188 Min:    38 Max:  9662 Err:     2 (0.00%)
+summary +   1054 in 00:00:03 =  334.8/s Avg:  6054 Min:  5755 Max:  6159 Err:     0 (0.00%) Active: 0 Started: 2000 Finished: 2000
+summary =  66612 in 00:03:46 =  294.4/s Avg:  5201 Min:    38 Max:  9662 Err:     2 (0.00%)
+Tidying up ...    @ Mon Jul 04 21:58:03 EEST 2022 (1656961083150)
+... end of run
