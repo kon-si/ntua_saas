@@ -1,9 +1,9 @@
 const path = require("path");
 const fs = require('fs');
-// const http = require("http");
-// const express = require("express");
-// const app = express();
-// const server = http.createServer(app);
+const http = require("http");
+const express = require("express");
+const app = express();
+const server = http.createServer(app);
 const AdmZip = require("adm-zip");
 const db = require("./config/database");
 const { Op } = require("sequelize");
@@ -11,11 +11,11 @@ const { QueryTypes } = require('sequelize');
 const { kafka, clientId } = require('./broker');
 const {Storage} = require('@google-cloud/storage');
 
-// const port = 9105;
-// // server listening 
-// server.listen(port, () => {
-//     console.log(`Flows Importer server running on: http://localhost:${port}/`);
-// });
+const port = 9105;
+// server listening 
+server.listen(port, () => {
+    console.log(`Flows Importer server running on: http://localhost:${port}/`);
+});
 
 const bucketName = 'flows-bucket';
 const serviceKey = __dirname + '/' + 'saas-2022-bc1a910f9c03.json';
@@ -92,7 +92,7 @@ const consume = async () => {
             const destFilename = __dirname + '/import_files/' + srcFilename;
 
             console.log("Downloading " + srcFilenameZip + " ...");
-            downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
+            await downloadFile(srcFilenameZip, destFilenameZip, bucketName).catch(console.error);
 
             // #2 UNZIP THE ZIP FILE
             const zip = new AdmZip(destFilenameZip);
