@@ -78,9 +78,10 @@ while True:
         parse_file(file_path)
 
         # Compress file
+        new_file_path = os.path.join(dir_path, "import_files", file_name)
         file_name_zip = file_name.replace(file_name[len(file_name) - 3:], "zip")
         with zipfile.ZipFile('./import_files/' + file_name_zip, 'w', zipfile.ZIP_DEFLATED) as zip:
-            zip.write(file_path, file_name)
+            zip.write(new_file_path, file_name) # zip.write(actual file path, path inside zip file
 
         # Upload file to bucket
         client = storage.Client.from_service_account_json('./saas-2022-bc1a910f9c03.json')
