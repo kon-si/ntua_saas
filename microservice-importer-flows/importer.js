@@ -110,7 +110,7 @@ const consume = async () => {
             // #4 DELETE THE OLD DATA AND IMPORT THE NEW ONES
             await db.physical_flows.destroy({where: { date_time: {[Op.between]: [date_from, date_to]} }});
             
-            await csvtojson({delimiter:["\t"]}).fromFile(destFilename)
+            await csvtojson({ delimiter:["\t"], ignoreEmpty: true }).fromFile(destFilename)
             .then(data => {
                 db.physical_flows.bulkCreate(data).then(() => console.log("Imported " + srcFilename + " to database"));
             }).catch(err => {
