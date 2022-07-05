@@ -8,7 +8,7 @@ const cors = require('cors');
 // Middleware for cross-origin requests.
 app.use(cors(
   {
-    origin: ["http://127.0.0.1", "http://localhost", "*", "https://web-server-image-47nenum5kq-ew.a.run.app"],
+    origin: ["http://127.0.0.1", "http://localhost", "https://web-server-image-47nenum5kq-ew.a.run.app"],
     credentials: true,  // Allows credentials(cookies) in http responses
   }
 ));
