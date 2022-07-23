@@ -4,9 +4,16 @@
 The goal of this project is to create a Web Application in the form of SaaS ! <br>
 The end user should be able to subcribe to our monthly service and we will provide him/her with detailed graphs and statistics of the energy data that all the EU countries produce each day <br>
 We provide authorization with google credentials as well as with our own authentication service !<br>
-**Tools Used :** <br> ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)<br>
+**Tools Used :** <br> 
+![Javascript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000000)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Webpack](https://img.shields.io/badge/webpack-8DD6F9?style=for-the-badge&logo=webpack&logoColor=000000)
+![PostgreSQL](https://img.shields.io/badge/postgresql-4169E1?style=for-the-badge&logo=postgresql&logoColor=FFFFFF)
+![Kafka](https://img.shields.io/badge/apache_kafka-000000?style=for-the-badge&logo=apache-kafka&logoColor=FFFFFF)
+![Docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=FFFFFF)<br>
 **Platform Link :** <br>
-[energy-live.com](https://web-server-image-47nenum5kq-ew.a.run.app/)
+🔗[https://www.energy-live.com](https://web-server-image-47nenum5kq-ew.a.run.app/)
 
 ## 👩‍💻 Contributors (Alphabetically)
 | Name  | Diagrams / Architecture | Database | API | Frontend | Parser / Data | Importer | Testing | Kafka (Messaging) | Cloud / Containers | SSE |
