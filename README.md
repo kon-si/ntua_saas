@@ -15,6 +15,9 @@ We provide authorization with google credentials as well as with our own authent
 **Platform Link :** <br>
 🔗[https://www.energy-live.com](https://web-server-image-47nenum5kq-ew.a.run.app/)
 
+**Youtube Link :** <br>
+🔗[EnergyLive | presentation](https://www.youtube.com/watch?v=p7G_NZAOIMI)
+
 ## 👩‍💻 Contributors (Alphabetically)
 | Name  | Diagrams / Architecture | Database | API | Frontend | Parser / Data | Importer | Testing | Kafka (Messaging) | Cloud / Containers | SSE |
 | --- | :---: | :---: | :---:  | :---:  | :---: | :---: | :---: | :---: | :---: | :---: |
