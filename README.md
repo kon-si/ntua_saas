@@ -22,7 +22,7 @@ We provide authorization with google credentials as well as with our own authent
 | Name  | Diagrams / Architecture | Database | API | Frontend | Parser / Data | Importer | Testing | Kafka (Messaging) | Cloud / Containers | SSE |
 | --- | :---: | :---: | :---:  | :---:  | :---: | :---: | :---: | :---: | :---: | :---: |
 |[christidia](https://github.com/christidia)       |||||||❤️||||
-|[ElinaSyr](https://github.com/ElinaSyr)           |❤️|||❤️||||||| 
+|[elinasyr](https://github.com/elinasyr)           |❤️|||❤️||||||| 
 |[kon-si](https://github.com/kon-si)               |❤️|❤️|❤️||❤️|❤️||❤️|❤️|| 
 |[nickbel7](https://github.com/nickbel7)           |❤️|❤️||❤️|❤️|❤️||❤️|❤️|❤️| 
 |[nikosece2019](https://github.com/nikosece2019)   ||❤️|||❤️|||||| 
